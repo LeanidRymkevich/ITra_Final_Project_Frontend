@@ -7,7 +7,7 @@ const App: FC = () => {
       <Routes>
         <Route
           path="/"
-          element={<h1 style={{ textAlign: "center" }}>Root Page</h1>}
+          element={<h1 style={{ textAlign: "center" }}>Root Test Page</h1>}
         />
         <Route
           path="/admins"
