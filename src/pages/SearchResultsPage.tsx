@@ -1,7 +1,7 @@
 const SearchResultsPage = () => {
   return (
     <div>
-      <h1>Admin's Page</h1>
+      <h1>SearchResultsPage</h1>
     </div>
   );
 };
