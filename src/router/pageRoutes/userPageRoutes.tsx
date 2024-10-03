@@ -6,7 +6,7 @@ import UserTemplates from '../../pages/UserPage/tabs/UserTemplates';
 
 import { PATHS } from '../../types/enums';
 
-const userPageRoutes = (
+const userPageRoutes: JSX.Element = (
   <Route
     path={PATHS.USER_PAGE}
     element={<UserPage />}

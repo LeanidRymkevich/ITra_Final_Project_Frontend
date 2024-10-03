@@ -1,15 +1,17 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Layout from '../components/Layout/Layout';
 import { PATHS, ROLES } from '../types/enums';
+
+import Layout from '../components/Layout';
 import commonRoutes from './commonRoutes';
 import NotFoundPage from '../pages/NotFoundPage';
-import { unauthorizedRoutes } from './unauthorizedRoutes';
-import { userRoutes } from './userRoutes';
-import { adminRoutes } from './adminRoutes';
+
+import { publicRoutes } from './publicRoutes';
+import { userRoutes, adminRoutes } from './privateRoutes';
 
 const Router = () => {
-  const role: ROLES | null = ROLES.ADMIN;
+  // TODO Later change to getting authentication state, currently null for not authenticated user
+  const role: ROLES | null = (() => null)();
 
   return (
     <BrowserRouter>
@@ -19,8 +21,8 @@ const Router = () => {
           element={<Layout />}
         >
           {commonRoutes}
-          {role
-            ? unauthorizedRoutes
+          {!role
+            ? publicRoutes
             : role === ROLES.USER
               ? userRoutes
               : adminRoutes}
