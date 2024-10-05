@@ -20,7 +20,6 @@ const ScrollTop: FC = () => {
     const anchor = document.querySelector(`#${SCROLL_ELEM_ID}`);
 
     if (anchor) {
-      console.log(anchor);
       anchor.scrollIntoView({
         block: 'start',
         behavior: 'smooth',

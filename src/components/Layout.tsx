@@ -13,7 +13,7 @@ const Layout: FC = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: 1,
-        minHeight: '200vh',
+        minHeight: '200vh', // TODO change to 100 later
       }}
     >
       <Header />
