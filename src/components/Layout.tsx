@@ -3,6 +3,8 @@ import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import { Box } from '@mui/material';
 
+import ScrollTop from './ScrollTop';
+
 const Layout: FC = () => {
   return (
     <Box
@@ -11,14 +13,14 @@ const Layout: FC = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: 1,
-        bgcolor: 'background.default',
-        minHeight: '100vh',
+        minHeight: '200vh',
       }}
     >
       <Header />
       <Box component={'main'} sx={{ flexGrow: 1 }}>
         <Outlet />
       </Box>
+      <ScrollTop />
     </Box>
   );
 };
