@@ -1,11 +1,15 @@
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { PATHS } from '../types/enums';
+import { Box, useColorScheme } from '@mui/material';
 
 const Header: FC = () => {
+  const { mode, setMode } = useColorScheme();
+
   return (
-    <header style={{ backgroundColor: 'cyan' }}>
-      <div
+    <Box component={'header'}>
+      <Box
+        component={'div'}
         style={{
           display: 'flex',
           gap: '10px',
@@ -19,8 +23,8 @@ const Header: FC = () => {
         <NavLink to={PATHS.USER_PAGE}>User's Page</NavLink>
         <NavLink to={PATHS.TEMPLATE_PAGE}>Template Page</NavLink>
         <NavLink to={PATHS.ADMIN_PAGE}>Admin's Page</NavLink>
-      </div>
-    </header>
+      </Box>
+    </Box>
   );
 };
 
