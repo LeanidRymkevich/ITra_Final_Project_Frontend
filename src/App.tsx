@@ -3,6 +3,7 @@ import Router from './router/Router';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import './styles.css';
+import { getInitialMode } from './utils/localStorageUtils';
 
 const theme = createTheme({
   colorSchemes: {
@@ -12,7 +13,7 @@ const theme = createTheme({
 
 const App: FC = () => {
   return (
-    <ThemeProvider theme={theme} defaultMode="system">
+    <ThemeProvider theme={theme} defaultMode={getInitialMode()}>
       <Router />
     </ThemeProvider>
   );

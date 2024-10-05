@@ -21,4 +21,9 @@ enum ROLES {
   USER = 'user',
 }
 
-export { PATHS, ROLES };
+enum LOCAL_STORAGE_KEYS {
+  MODE = 'mode',
+  LANG = 'lang',
+}
+
+export { PATHS, ROLES, LOCAL_STORAGE_KEYS };
