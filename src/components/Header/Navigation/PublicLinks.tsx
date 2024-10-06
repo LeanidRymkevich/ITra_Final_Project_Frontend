@@ -2,15 +2,15 @@ import { Link, ListItem, ListItemButton, ListItemText } from '@mui/material';
 import { FC } from 'react';
 import { PAGE_NAMES, PATHS } from '../../../types/enums';
 
-const CommonLinks: FC = () => {
+const PublicLinks: FC = () => {
   return (
     <>
       <ListItem disablePadding>
         <ListItemButton sx={{ textAlign: 'center' }}>
           <ListItemText
             primary={
-              <Link variant="button" href={PATHS.MAIN_PAGE}>
-                {PAGE_NAMES.MAIN_PAGE}
+              <Link variant="button" href={PATHS.SIGN_IN}>
+                {PAGE_NAMES.SIGN_IN}
               </Link>
             }
           />
@@ -20,8 +20,8 @@ const CommonLinks: FC = () => {
         <ListItemButton sx={{ textAlign: 'center' }}>
           <ListItemText
             primary={
-              <Link variant="button" href={PATHS.SEARCH_RESULTS_PAGE}>
-                {PAGE_NAMES.SEARCH_RESULTS_PAGE}
+              <Link variant="button" href={PATHS.SIGN_UP}>
+                {PAGE_NAMES.SIGN_UP}
               </Link>
             }
           />
@@ -31,4 +31,4 @@ const CommonLinks: FC = () => {
   );
 };
 
-export default CommonLinks;
+export default PublicLinks;
