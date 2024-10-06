@@ -3,7 +3,7 @@ import Fab from '@mui/material/Fab';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useScrollTrigger, Fade, Box } from '@mui/material';
 
-import { SCROLL_ELEM_ID } from './CustomAppBar';
+import { SCROLL_ELEM_ID } from '../Header/CustomAppBar';
 
 const BUTTON_POSITION = {
   position: 'fixed',

@@ -3,7 +3,7 @@ import { IconButton, useColorScheme } from '@mui/material';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import ModeNightIcon from '@mui/icons-material/ModeNight';
 
-import { LOCAL_STORAGE_KEYS } from '../types/enums';
+import { LOCAL_STORAGE_KEYS } from '../../types/enums';
 
 const ModeSwitcher: FC = () => {
   const { mode, setMode } = useColorScheme();
@@ -15,8 +15,8 @@ const ModeSwitcher: FC = () => {
   };
 
   return (
-    <IconButton color="primary" onClick={onClick}>
-      {mode === 'light' ? <LightModeIcon /> : <ModeNightIcon />}
+    <IconButton color="secondary" onClick={onClick} edge="end">
+      {mode !== 'light' ? <LightModeIcon /> : <ModeNightIcon />}
     </IconButton>
   );
 };

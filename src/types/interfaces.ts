@@ -4,4 +4,9 @@ interface ChildrenOnlyProps {
   children: ReactElement[];
 }
 
-export type { ChildrenOnlyProps };
+interface NavigationBarProps {
+  isMenuOpen: boolean;
+  handleMenuToggle: () => void;
+}
+
+export type { ChildrenOnlyProps, NavigationBarProps };
