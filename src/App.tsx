@@ -1,16 +1,13 @@
 import { FC } from 'react';
 import Router from './router/Router';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-
-import './styles.css';
-import { getInitialMode } from './utils/localStorageUtils';
+import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 
-const theme = createTheme({
-  colorSchemes: {
-    dark: true,
-  },
-});
+import './styles.css';
+
+import { getInitialMode } from './utils/localStorageUtils';
+
+import theme from './theme';
 
 const App: FC = () => {
   return (

@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 
 interface ChildrenOnlyProps {
-  children: ReactElement;
+  children: ReactElement[];
 }
 
 export type { ChildrenOnlyProps };

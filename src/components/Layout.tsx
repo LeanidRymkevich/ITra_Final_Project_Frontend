@@ -1,18 +1,14 @@
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
-import { Box } from '@mui/material';
-
-import ScrollTop from './ScrollTop';
+import { Box, Stack } from '@mui/material';
 
 const Layout: FC = () => {
   return (
-    <Box
+    <Stack
+      spacing={2}
       component={'div'}
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 1,
         minHeight: '200vh', // TODO change to 100 later
       }}
     >
@@ -20,8 +16,7 @@ const Layout: FC = () => {
       <Box component={'main'} sx={{ flexGrow: 1 }}>
         <Outlet />
       </Box>
-      <ScrollTop />
-    </Box>
+    </Stack>
   );
 };
 

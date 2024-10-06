@@ -1,11 +1,9 @@
-import { cloneElement, FC } from 'react';
+import { cloneElement, FC, ReactElement } from 'react';
 import { useScrollTrigger } from '@mui/material';
-
-import { ChildrenOnlyProps } from '../types/interfaces';
 
 const TRIGGER_HEIGHT_THRESHOLD = 0;
 
-const ElevationScroll: FC<ChildrenOnlyProps> = ({ children }) => {
+const ElevationScroll: FC<{ children: ReactElement }> = ({ children }) => {
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: TRIGGER_HEIGHT_THRESHOLD,

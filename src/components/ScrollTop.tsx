@@ -3,7 +3,7 @@ import Fab from '@mui/material/Fab';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useScrollTrigger, Fade, Box } from '@mui/material';
 
-import { SCROLL_ELEM_ID } from './Header';
+import { SCROLL_ELEM_ID } from './CustomAppBar';
 
 const BUTTON_POSITION = {
   position: 'fixed',
@@ -21,7 +21,7 @@ const ScrollTop: FC = () => {
 
     if (anchor) {
       anchor.scrollIntoView({
-        block: 'start',
+        block: 'center',
         behavior: 'smooth',
       });
     }
