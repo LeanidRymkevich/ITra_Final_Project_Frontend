@@ -1,12 +1,10 @@
 import { Button } from '@mui/material';
-import { FC, ReactElement } from 'react';
+import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { NavButtonProps } from '../../../types/interfaces';
 
-const NavButton: FC<{ href: string; children: ReactElement | string }> = ({
-  href,
-  children,
-}) => {
+const NavButton: FC<NavButtonProps> = ({ href, children }) => {
   const location = useLocation();
 
   return (

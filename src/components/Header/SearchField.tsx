@@ -1,6 +1,9 @@
 import { styled } from '@mui/material/styles';
 import { alpha, InputBase } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import { FC, KeyboardEventHandler, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { PATHS } from '../../types/enums';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -19,13 +22,14 @@ const Search = styled('div')(({ theme }) => ({
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
+  padding: theme.spacing(0, 0, 0, 0.5),
   height: '100%',
   position: 'absolute',
-  pointerEvents: 'none',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  cursor: 'pointer',
+  zIndex: 200,
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -33,7 +37,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    paddingLeft: `calc(1em + ${theme.spacing(2)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
@@ -42,15 +46,34 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const SearchField = () => {
+const INPUT_PLACEHOLDER = 'Search…';
+
+const SearchField: FC = () => {
+  const [text, setText] = useState('');
+  const navigate = useNavigate();
+
+  const searchHandler = () => {
+    // TODO Write search text to memory, navigate to Search page and perform searching
+    console.log(text);
+    setText('');
+    navigate(PATHS.SEARCH_RESULTS_PAGE);
+  };
+
+  const onEnterPress: KeyboardEventHandler<HTMLInputElement> = (event) => {
+    if (event.code !== 'Enter') return;
+    searchHandler();
+  };
+
   return (
     <Search>
-      <SearchIconWrapper>
+      <SearchIconWrapper onClick={searchHandler}>
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase
-        placeholder="Search…"
-        inputProps={{ 'aria-label': 'search' }}
+        value={text}
+        onChange={(event) => setText(event.target.value)}
+        onKeyUp={onEnterPress}
+        placeholder={INPUT_PLACEHOLDER}
       />
     </Search>
   );

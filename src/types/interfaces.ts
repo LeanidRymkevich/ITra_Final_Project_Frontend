@@ -9,4 +9,9 @@ interface NavigationBarProps {
   handleMenuToggle: () => void;
 }
 
-export type { ChildrenOnlyProps, NavigationBarProps };
+interface NavButtonProps {
+  href: string;
+  children: ReactElement | string;
+}
+
+export type { ChildrenOnlyProps, NavigationBarProps, NavButtonProps };
