@@ -65,7 +65,7 @@ const SearchField: FC = () => {
   };
 
   return (
-    <Search>
+    <Search sx={{ flexGrow: 1 }}>
       <SearchIconWrapper onClick={searchHandler}>
         <SearchIcon />
       </SearchIconWrapper>

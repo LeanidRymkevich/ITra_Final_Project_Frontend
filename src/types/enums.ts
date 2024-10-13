@@ -43,4 +43,9 @@ enum LOCAL_STORAGE_KEYS {
   LANG = 'lang',
 }
 
-export { PATHS, ROLES, LOCAL_STORAGE_KEYS, PAGE_NAMES };
+enum LANGUAGES {
+  EN = 'en',
+  RU = 'ru',
+}
+
+export { PATHS, ROLES, LOCAL_STORAGE_KEYS, PAGE_NAMES, LANGUAGES };

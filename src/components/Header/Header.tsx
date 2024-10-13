@@ -2,10 +2,11 @@ import { FC, useState } from 'react';
 import { IconButton, Typography } from '@mui/material';
 import ModeSwitcher from '../UI/ModeSwitcher';
 import CustomAppBar from './CustomAppBar';
-import SearchField from './SearchField';
+import SearchField from '../UI/SearchField';
 import MenuIcon from '@mui/icons-material/Menu';
 import { APP_TITLE } from '../../constants';
 import NavigationBar from './Navigation/NavigationBar';
+import LangSwitcher from '../UI/LangSwitcher';
 
 const Header: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,6 +36,7 @@ const Header: FC = () => {
           {APP_TITLE}
         </Typography>
         <SearchField />
+        <LangSwitcher />
         <ModeSwitcher />
       </CustomAppBar>
       <NavigationBar {...{ isMenuOpen, handleMenuToggle }} />
