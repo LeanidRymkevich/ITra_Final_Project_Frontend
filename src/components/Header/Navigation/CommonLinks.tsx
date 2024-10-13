@@ -1,31 +1,18 @@
-import { Link, ListItem, ListItemButton, ListItemText } from '@mui/material';
+import { ListItem } from '@mui/material';
 import { FC } from 'react';
 import { PAGE_NAMES, PATHS } from '../../../types/enums';
+import NavButton from './NavButton';
 
 const CommonLinks: FC = () => {
   return (
     <>
       <ListItem disablePadding>
-        <ListItemButton sx={{ textAlign: 'center' }}>
-          <ListItemText
-            primary={
-              <Link variant="button" href={PATHS.MAIN_PAGE}>
-                {PAGE_NAMES.MAIN_PAGE}
-              </Link>
-            }
-          />
-        </ListItemButton>
+        <NavButton href={PATHS.MAIN_PAGE}>{PAGE_NAMES.MAIN_PAGE}</NavButton>
       </ListItem>
       <ListItem disablePadding>
-        <ListItemButton sx={{ textAlign: 'center' }}>
-          <ListItemText
-            primary={
-              <Link variant="button" href={PATHS.SEARCH_RESULTS_PAGE}>
-                {PAGE_NAMES.SEARCH_RESULTS_PAGE}
-              </Link>
-            }
-          />
-        </ListItemButton>
+        <NavButton href={PATHS.SEARCH_RESULTS_PAGE}>
+          {PAGE_NAMES.SEARCH_RESULTS_PAGE}
+        </NavButton>
       </ListItem>
     </>
   );

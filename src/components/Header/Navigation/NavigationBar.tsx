@@ -11,7 +11,7 @@ import {
 import { APP_TITLE } from '../../../constants';
 import { ROLES } from '../../../types/enums';
 import CommonLinks from './CommonLinks';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import CloseIcon from '@mui/icons-material/Close';
 import PublicLinks from './PublicLinks';
 import PrivateLinks from './PrivateLinks';
 
@@ -36,22 +36,23 @@ const NavigationBar: FC<NavigationBarProps> = ({
           padding: '0 10px',
         }}
       >
-        <Typography variant="h6" sx={{ my: 2 }}>
+        <Typography variant="h6" color="secondary" sx={{ my: 2 }}>
           {APP_TITLE}
         </Typography>
         <IconButton
           onClick={handleMenuToggle}
+          color="secondary"
           sx={{
             width: 'fit-content',
             height: 'fit-content',
             alignSelf: 'center',
           }}
         >
-          <ArrowForwardIosIcon />
+          <CloseIcon />
         </IconButton>
       </Box>
       <Divider />
-      <List onClick={handleMenuToggle}>
+      <List>
         <CommonLinks />
         {!role ? <PublicLinks /> : <PrivateLinks role={role} />}
       </List>
