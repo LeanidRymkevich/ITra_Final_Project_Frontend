@@ -12,7 +12,12 @@ const NavButton: FC<NavButtonProps> = ({ href, children }) => {
       component={NavLink}
       to={href}
       disabled={location.pathname === href}
-      sx={{ width: '100%', justifyContent: 'flex-start', fontSize: '1.25rem' }}
+      sx={{
+        width: '100%',
+        justifyContent: 'flex-start',
+        fontSize: '1.25rem',
+        textAlign: 'left',
+      }}
     >
       {children}
     </Button>

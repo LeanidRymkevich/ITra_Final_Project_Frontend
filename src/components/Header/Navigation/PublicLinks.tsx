@@ -1,16 +1,19 @@
 import { ListItem } from '@mui/material';
 import { FC } from 'react';
-import { PAGE_NAMES, PATHS } from '../../../types/enums';
+import { PATHS } from '../../../types/enums';
 import NavButton from './NavButton';
+import { useTranslation } from 'react-i18next';
 
 const PublicLinks: FC = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <ListItem disablePadding>
-        <NavButton href={PATHS.SIGN_IN}>{PAGE_NAMES.SIGN_IN}</NavButton>
+        <NavButton href={PATHS.SIGN_IN}>{t('header:SignIn')}</NavButton>
       </ListItem>
       <ListItem disablePadding>
-        <NavButton href={PATHS.SIGN_UP}>{PAGE_NAMES.SIGN_UP}</NavButton>
+        <NavButton href={PATHS.SIGN_UP}>{t('header:SignUp')}</NavButton>
       </ListItem>
     </>
   );

@@ -4,9 +4,16 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { FC, useState, MouseEvent } from 'react';
 import { LANGUAGES } from '../../types/enums';
+import { useTranslation } from 'react-i18next';
+
+const DATA_LANG_ATTR = 'lang';
+
+const langAttr = `data-${DATA_LANG_ATTR}`;
 
 const LangSwitcher: FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const { t, i18n } = useTranslation();
+
   const open = Boolean(anchorEl);
 
   const handleClick = (event: MouseEvent<HTMLElement>) => {
@@ -14,9 +21,16 @@ const LangSwitcher: FC = () => {
   };
 
   const handleClose = (event: MouseEvent<HTMLElement>) => {
-    const text = (event.target as HTMLElement).textContent;
-    // TODO Do something on lang choosing (if text)
-    console.log(`Chosen lang: ${text}`);
+    const lang: string | undefined = (event.target as HTMLElement).dataset[
+      DATA_LANG_ATTR
+    ];
+
+    if (!lang || i18n.language === lang) {
+      setAnchorEl(null);
+      return;
+    }
+
+    i18n.changeLanguage(lang);
     setAnchorEl(null);
   };
 
@@ -38,8 +52,12 @@ const LangSwitcher: FC = () => {
           horizontal: 'left',
         }}
       >
-        <MenuItem onClick={handleClose}>{LANGUAGES.EN}</MenuItem>
-        <MenuItem onClick={handleClose}>{LANGUAGES.RU}</MenuItem>
+        <MenuItem {...{ [langAttr]: LANGUAGES.EN }} onClick={handleClose}>
+          {t('header:LanguageEn')}
+        </MenuItem>
+        <MenuItem {...{ [langAttr]: LANGUAGES.RU }} onClick={handleClose}>
+          {t('header:LanguageRu')}
+        </MenuItem>
       </Menu>
     </div>
   );

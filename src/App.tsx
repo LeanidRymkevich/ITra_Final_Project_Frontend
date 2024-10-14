@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, Suspense } from 'react';
 import Router from './router/Router';
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
@@ -10,10 +10,12 @@ import theme from './themes/theme';
 
 const App: FC = () => {
   return (
-    <ThemeProvider theme={theme} defaultMode="system">
-      <CssBaseline />
-      <Router />
-    </ThemeProvider>
+    <Suspense fallback={'loading...'}>
+      <ThemeProvider theme={theme} defaultMode="system">
+        <CssBaseline />
+        <Router />
+      </ThemeProvider>
+    </Suspense>
   );
 };
 

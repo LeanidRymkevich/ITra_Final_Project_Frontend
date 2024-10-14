@@ -4,6 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { FC, KeyboardEventHandler, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PATHS } from '../../types/enums';
+import { useTranslation } from 'react-i18next';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -46,14 +47,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const INPUT_PLACEHOLDER = 'Search…';
-
 const SearchField: FC = () => {
   const [text, setText] = useState('');
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const searchHandler = () => {
     // TODO Write search text to memory, navigate to Search page and perform searching
+    if (!text) return;
     console.log(text);
     setText('');
     navigate(PATHS.SEARCH_RESULTS_PAGE);
@@ -73,7 +74,7 @@ const SearchField: FC = () => {
         value={text}
         onChange={(event) => setText(event.target.value)}
         onKeyUp={onEnterPress}
-        placeholder={INPUT_PLACEHOLDER}
+        placeholder={t('header:SearchPlaceholder')}
       />
     </Search>
   );

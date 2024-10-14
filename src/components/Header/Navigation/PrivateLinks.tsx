@@ -1,8 +1,9 @@
 import { Button, Collapse, List, ListItem } from '@mui/material';
 import { FC, useState } from 'react';
-import { PAGE_NAMES, PATHS, ROLES } from '../../../types/enums';
+import { PATHS, ROLES } from '../../../types/enums';
 import NavButton from './NavButton';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
 
 const COLLAPSE_BTN_STYLES = {
   width: '100%',
@@ -12,6 +13,8 @@ const COLLAPSE_BTN_STYLES = {
 };
 
 const PrivateLinks: FC<{ role: ROLES }> = ({ role }) => {
+  const { t } = useTranslation();
+
   const [isTemplateLinksListOpen, setIsTemplateLinksListOpen] = useState(false);
   const [isUserLinksListOpen, setIsUserLinksListOpen] = useState(false);
 
@@ -24,7 +27,7 @@ const PrivateLinks: FC<{ role: ROLES }> = ({ role }) => {
     <>
       <ListItem disablePadding>
         <Button onClick={handleTemplateLinkClick} sx={COLLAPSE_BTN_STYLES}>
-          {PAGE_NAMES.TEMPLATE_PAGE}
+          {t('header:Templates')}
           {isTemplateLinksListOpen ? <ExpandLess /> : <ExpandMore />}
         </Button>
       </ListItem>
@@ -37,22 +40,22 @@ const PrivateLinks: FC<{ role: ROLES }> = ({ role }) => {
         <List component="div" disablePadding>
           <ListItem disablePadding>
             <NavButton href={PATHS.TEMPLATE_EDITOR_TAB}>
-              {PAGE_NAMES.TEMPLATE_EDITOR_TAB}
+              {t('header:TemplateEditor')}
             </NavButton>
           </ListItem>
           <ListItem disablePadding>
             <NavButton href={PATHS.TEMPLATE_FORMS_TAB}>
-              {PAGE_NAMES.TEMPLATE_FORMS_TAB}
+              {t('header:TemplateForms')}
             </NavButton>
           </ListItem>
           <ListItem disablePadding>
             <NavButton href={PATHS.TEMPLATE_SETTINGS_TAB}>
-              {PAGE_NAMES.TEMPLATE_SETTINGS_TAB}
+              {t('header:TemplateSettings')}
             </NavButton>
           </ListItem>
           <ListItem disablePadding>
             <NavButton href={PATHS.TEMPLATE_STATISTICS_TAB}>
-              {PAGE_NAMES.TEMPLATE_STATISTICS_TAB}
+              {t('header:TemplateStatistics')}
             </NavButton>
           </ListItem>
         </List>
@@ -60,7 +63,7 @@ const PrivateLinks: FC<{ role: ROLES }> = ({ role }) => {
 
       <ListItem disablePadding>
         <Button onClick={handleUserLinkClick} sx={COLLAPSE_BTN_STYLES}>
-          {PAGE_NAMES.USER_PAGE}
+          {t('header:UserPage')}
           {isUserLinksListOpen ? <ExpandLess /> : <ExpandMore />}
         </Button>
       </ListItem>
@@ -73,12 +76,12 @@ const PrivateLinks: FC<{ role: ROLES }> = ({ role }) => {
         <List component="div" disablePadding>
           <ListItem disablePadding>
             <NavButton href={PATHS.USER_TEMPLATES_TAB}>
-              {PAGE_NAMES.USER_TEMPLATES_TAB}
+              {t('header:UserTemplates')}
             </NavButton>
           </ListItem>
           <ListItem disablePadding>
             <NavButton href={PATHS.USER_FORMS_TAB}>
-              {PAGE_NAMES.USER_FORMS_TAB}
+              {t('header:UserForms')}
             </NavButton>
           </ListItem>
         </List>
@@ -86,7 +89,7 @@ const PrivateLinks: FC<{ role: ROLES }> = ({ role }) => {
 
       {role === ROLES.ADMIN && (
         <ListItem disablePadding>
-          <NavButton href={PATHS.ADMIN_PAGE}>{PAGE_NAMES.ADMIN_PAGE}</NavButton>
+          <NavButton href={PATHS.ADMIN_PAGE}>{t('header:AdminPage')}</NavButton>
         </ListItem>
       )}
     </>
