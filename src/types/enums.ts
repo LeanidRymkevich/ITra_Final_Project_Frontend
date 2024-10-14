@@ -39,7 +39,6 @@ enum ROLES {
 }
 
 enum LOCAL_STORAGE_KEYS {
-  MODE = 'mode',
   LANG = 'lang',
 }
 

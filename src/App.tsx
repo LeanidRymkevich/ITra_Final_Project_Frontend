@@ -5,13 +5,11 @@ import { CssBaseline } from '@mui/material';
 
 import './styles.css';
 
-import { getInitialMode } from './utils/localStorageUtils';
-
 import theme from './theme';
 
 const App: FC = () => {
   return (
-    <ThemeProvider theme={theme} defaultMode={getInitialMode()}>
+    <ThemeProvider theme={theme} defaultMode="system">
       <CssBaseline />
       <Router />
     </ThemeProvider>
