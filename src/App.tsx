@@ -3,9 +3,9 @@ import Router from './router/Router';
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 
-import './styles.css';
+import './styles/styles.css';
 
-import theme from './theme';
+import theme from './themes/theme';
 
 const App: FC = () => {
   return (
