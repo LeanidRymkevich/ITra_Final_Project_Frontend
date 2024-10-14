@@ -3,6 +3,7 @@ import Router from './router/Router';
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 
+import './localization/i18n';
 import './styles/styles.css';
 
 import theme from './themes/theme';
