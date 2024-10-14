@@ -1,6 +1,6 @@
 import { Mode } from '@mui/system/cssVars/useCurrentColorScheme';
 
-import { DEFAULT_MODE } from '../constants';
+import { DEFAULT_MODE } from '../constants/constants';
 
 const getNextThemeMode = (mode: Mode | undefined): Mode => {
   if (!mode) return DEFAULT_MODE;

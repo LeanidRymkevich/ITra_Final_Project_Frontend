@@ -8,7 +8,7 @@ import {
   Drawer,
   IconButton,
 } from '@mui/material';
-import { APP_TITLE } from '../../../constants';
+import { APP_TITLE } from '../../../constants/constants';
 import { ROLES } from '../../../types/enums';
 import CommonLinks from './CommonLinks';
 import CloseIcon from '@mui/icons-material/Close';

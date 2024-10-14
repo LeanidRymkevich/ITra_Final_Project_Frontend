@@ -4,7 +4,7 @@ import ModeSwitcher from '../UI/ModeSwitcher';
 import CustomAppBar from './CustomAppBar';
 import SearchField from '../UI/SearchField';
 import MenuIcon from '@mui/icons-material/Menu';
-import { APP_TITLE } from '../../constants';
+import { APP_TITLE } from '../../constants/constants';
 import NavigationBar from './Navigation/NavigationBar';
 import LangSwitcher from '../UI/LangSwitcher';
 
