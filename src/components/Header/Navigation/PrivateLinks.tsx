@@ -10,6 +10,7 @@ const COLLAPSE_BTN_STYLES = {
   justifyContent: 'flex-start',
   gap: 1,
   fontSize: '1.25rem',
+  textAlign: 'left',
 };
 
 const PrivateLinks: FC<{ role: ROLES }> = ({ role }) => {

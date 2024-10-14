@@ -7,10 +7,11 @@ import './localization/i18n';
 import './styles/styles.css';
 
 import theme from './themes/theme';
+import Loader from './components/UI/Loader';
 
 const App: FC = () => {
   return (
-    <Suspense fallback={'loading...'}>
+    <Suspense fallback={<Loader />}>
       <ThemeProvider theme={theme} defaultMode="system">
         <CssBaseline />
         <Router />
