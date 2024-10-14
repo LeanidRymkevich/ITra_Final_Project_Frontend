@@ -1,22 +1,31 @@
 import { FC } from 'react';
-import { Outlet } from 'react-router-dom';
+import { useLocation, Outlet } from 'react-router-dom';
 import Header from './Header/Header';
 import { Box, Stack } from '@mui/material';
+import { HelmetProvider, Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
+import { getPageTitleI18nKey } from '../utils/pageTitleUtil';
 
 const Layout: FC = () => {
+  const { pathname } = useLocation();
+  const { t } = useTranslation();
+
   return (
-    <Stack
-      spacing={2}
-      component={'div'}
-      sx={{
-        minHeight: '200vh', // TODO change to 100 later
-      }}
-    >
-      <Header />
-      <Box component={'main'} sx={{ flexGrow: 1 }}>
-        <Outlet />
-      </Box>
-    </Stack>
+    <HelmetProvider>
+      <Helmet title={t(`header:${getPageTitleI18nKey(pathname)}`)} />
+      <Stack
+        spacing={2}
+        component={'div'}
+        sx={{
+          minHeight: '200vh', // TODO change to 100 later
+        }}
+      >
+        <Header />
+        <Box component={'main'} sx={{ flexGrow: 1 }}>
+          <Outlet />
+        </Box>
+      </Stack>
+    </HelmetProvider>
   );
 };
 

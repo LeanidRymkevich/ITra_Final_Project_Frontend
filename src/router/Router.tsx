@@ -23,8 +23,8 @@ const Router = () => {
             : role === ROLES.USER
             ? userRoutes
             : adminRoutes}
+          <Route path={PATHS.NOT_EXIST} element={<NotFoundPage />} />
         </Route>
-        <Route path={PATHS.NOT_EXIST} element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );
