@@ -7,7 +7,7 @@ import { LANGUAGES } from '../types/enums';
 
 import { DEFAULT_LANG, SERVER_URL } from '../constants/constants';
 
-const NAMESPACES = ['header'];
+const NAMESPACES = ['header', 'auth'];
 
 const serverLoadPath = `${SERVER_URL}locales/{{lng}}/{{ns}}.json`;
 

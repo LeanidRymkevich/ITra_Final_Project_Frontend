@@ -11,7 +11,7 @@ import { userRoutes, adminRoutes } from './privateRoutes';
 
 const Router = () => {
   // TODO Later change to getting authentication state, currently null for not authenticated user
-  const role: ROLES | null = (() => ROLES.ADMIN)();
+  const role: ROLES | null = (() => null)();
 
   return (
     <BrowserRouter>
