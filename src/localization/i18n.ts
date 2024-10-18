@@ -16,7 +16,7 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    debug: true,
+    // debug: true,
     fallbackLng: DEFAULT_LANG,
     supportedLngs: [LANGUAGES.EN, LANGUAGES.RU],
     ns: NAMESPACES,

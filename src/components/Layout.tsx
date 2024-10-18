@@ -17,7 +17,7 @@ const Layout: FC = () => {
         spacing={2}
         component={'div'}
         sx={{
-          minHeight: '200vh', // TODO change to 100 later
+          minHeight: '100vh',
         }}
       >
         <Header />

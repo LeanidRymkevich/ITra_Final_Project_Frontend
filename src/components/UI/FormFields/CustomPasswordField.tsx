@@ -1,54 +1,58 @@
 import { VisibilityOff, Visibility } from '@mui/icons-material';
-import {
-  FormControl,
-  InputLabel,
-  OutlinedInput,
-  InputAdornment,
-  IconButton,
-} from '@mui/material';
-import { FC, useState } from 'react';
+import { InputAdornment, IconButton, TextField } from '@mui/material';
+import { FC, FocusEventHandler, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { isEmpty } from 'validator';
 
 const CustomPasswordField: FC = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState<string>('');
   const { t } = useTranslation();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleMouseDownPassword = (event: React.MouseEvent) => {
-    event.preventDefault();
+  const onBlur: FocusEventHandler<HTMLInputElement> = (event) => {
+    const value: string = event.target.value;
+    if (isEmpty(value)) {
+      setError(t('auth:PasswordError'));
+      return;
+    }
+    setError('');
   };
 
   return (
-    <FormControl sx={{ my: 2 }} fullWidth variant="outlined">
-      <InputLabel size="small" htmlFor="outlined-adornment-password">
-        {t('auth:Password')}
-      </InputLabel>
-      <OutlinedInput
-        id="outlined-adornment-password"
-        type={showPassword ? 'text' : 'password'}
-        name="password"
-        size="small"
-        endAdornment={
-          <InputAdornment position="end">
-            <IconButton
-              aria-label="toggle password visibility"
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
-              edge="end"
-              size="small"
-            >
-              {showPassword ? (
-                <VisibilityOff fontSize="inherit" />
-              ) : (
-                <Visibility fontSize="inherit" />
-              )}
-            </IconButton>
-          </InputAdornment>
-        }
-        label="Password"
-      />
-    </FormControl>
+    <TextField
+      type={showPassword ? 'text' : 'password'}
+      id="password-input-with-icon"
+      label={t('auth:Password')}
+      name="password"
+      size="small"
+      onBlur={onBlur}
+      error={!!error}
+      helperText={error}
+      fullWidth
+      variant="outlined"
+      slotProps={{
+        input: {
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                edge="end"
+                size="small"
+              >
+                {showPassword ? (
+                  <VisibilityOff fontSize="inherit" />
+                ) : (
+                  <Visibility fontSize="inherit" />
+                )}
+              </IconButton>
+            </InputAdornment>
+          ),
+        },
+      }}
+    />
   );
 };
 
