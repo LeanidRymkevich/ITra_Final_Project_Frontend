@@ -18,6 +18,11 @@ interface NavButtonProps {
 interface CustomFieldProps<T extends FieldValues> {
   register: UseFormRegister<T>;
   errors: FieldErrors<T>;
+  isPending: boolean;
+}
+
+interface CustomFormButtonProps {
+  isPending: boolean;
 }
 
 export type {
@@ -25,4 +30,5 @@ export type {
   NavigationBarProps,
   NavButtonProps,
   CustomFieldProps,
+  CustomFormButtonProps,
 };

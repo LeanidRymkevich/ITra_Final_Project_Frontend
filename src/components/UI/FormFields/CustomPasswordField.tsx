@@ -10,6 +10,7 @@ const PASSWORD_INPUT_ID = 'password-input-with-icon';
 const CustomPasswordField = <T extends FieldValues>({
   register,
   errors,
+  isPending,
 }: CustomFieldProps<T>) => {
   const [showPassword, setShowPassword] = useState(false);
   const { t } = useTranslation();
@@ -25,6 +26,7 @@ const CustomPasswordField = <T extends FieldValues>({
       error={!!errors.password?.message}
       helperText={errors.password?.message && t('auth:PasswordError')}
       fullWidth
+      disabled={isPending}
       variant="outlined"
       {...register('password' as Path<T>)}
       slotProps={{
@@ -35,6 +37,7 @@ const CustomPasswordField = <T extends FieldValues>({
                 onClick={handleClickShowPassword}
                 edge="end"
                 size="small"
+                disabled={isPending}
               >
                 {showPassword ? (
                   <VisibilityOff fontSize="inherit" />

@@ -20,7 +20,7 @@ import signInSchema, { signInFormData } from '../yup_schemes/signInSchema';
 
 const SignInPage = () => {
   const [error, setError] = useState<string>('');
-
+  const isPending = false;
   const { t } = useTranslation();
 
   const {
@@ -36,7 +36,7 @@ const SignInPage = () => {
   const onSubmit = (data: signInFormData) => {
     console.log('submitted');
     console.log(data);
-    console.log(checkboxRef.current?.checked);
+    console.log(checkboxRef.current?.checked); // TODO use to decide store user data in LocalStorage or not
   };
 
   return (
@@ -52,8 +52,8 @@ const SignInPage = () => {
           onSubmit={handleSubmit(onSubmit)}
           noValidate
         >
-          <CustomEmailField {...{ register, errors }} />
-          <CustomPasswordField {...{ register, errors }} />
+          <CustomEmailField {...{ register, errors, isPending }} />
+          <CustomPasswordField {...{ register, errors, isPending }} />
           {error && (
             <Alert
               severity="error"
@@ -67,8 +67,9 @@ const SignInPage = () => {
           <FormControlLabel
             control={<Checkbox inputRef={checkboxRef} />}
             label={t('auth:RememberMe')}
+            disabled={isPending}
           />
-          <CustomFormButton />
+          <CustomFormButton isPending={isPending} />
         </form>
       </Stack>
     </Container>
