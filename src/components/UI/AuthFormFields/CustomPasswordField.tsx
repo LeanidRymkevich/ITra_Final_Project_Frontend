@@ -2,16 +2,19 @@ import { VisibilityOff, Visibility } from '@mui/icons-material';
 import { InputAdornment, IconButton, TextField } from '@mui/material';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CustomFieldProps } from '../../../types/interfaces';
+import { CustomPasswordProps } from '../../../types/interfaces';
 import { FieldValues, Path } from 'react-hook-form';
 
-const PASSWORD_INPUT_ID = 'password-input-with-icon';
+const PASSWORD_INPUT_ID = 'input-with-icon';
 
 const CustomPasswordField = <T extends FieldValues>({
   register,
-  errors,
+  error,
   isPending,
-}: CustomFieldProps<T>) => {
+  labelI18nKey,
+  errorI18nKey,
+  fieldName,
+}: CustomPasswordProps<T>) => {
   const [showPassword, setShowPassword] = useState(false);
   const { t } = useTranslation();
 
@@ -20,15 +23,15 @@ const CustomPasswordField = <T extends FieldValues>({
   return (
     <TextField
       type={showPassword ? 'text' : 'password'}
-      id={PASSWORD_INPUT_ID}
-      label={t('auth:Password')}
+      id={`${fieldName}-${PASSWORD_INPUT_ID}`}
+      label={t(`auth:${labelI18nKey}`)}
       size="small"
-      error={!!errors.password?.message}
-      helperText={errors.password?.message && t('auth:PasswordError')}
+      error={!!error}
+      helperText={error && t(`auth:${errorI18nKey}`)}
       fullWidth
       disabled={isPending}
       variant="outlined"
-      {...register('password' as Path<T>)}
+      {...register(fieldName as Path<T>)}
       slotProps={{
         input: {
           endAdornment: (

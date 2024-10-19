@@ -1,4 +1,4 @@
-import { AccountCircle } from '@mui/icons-material';
+import EmailIcon from '@mui/icons-material/Email';
 import { TextField, InputAdornment } from '@mui/material';
 import { FieldValues, Path } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -8,7 +8,7 @@ const EMAIL_INPUT_ID = 'email-input-with-icon';
 
 const CustomEmailField = <T extends FieldValues>({
   register,
-  errors,
+  error,
   isPending,
 }: CustomFieldProps<T>) => {
   const { t } = useTranslation();
@@ -19,8 +19,8 @@ const CustomEmailField = <T extends FieldValues>({
       label={t('auth:Email')}
       type="email"
       size="small"
-      error={!!errors.email?.message}
-      helperText={errors.email?.message && t('auth:EmailError')}
+      error={!!error}
+      helperText={error && t('auth:EmailError')}
       fullWidth
       disabled={isPending}
       variant="outlined"
@@ -32,7 +32,7 @@ const CustomEmailField = <T extends FieldValues>({
               sx={{ margin: '0 0 0 8px', padding: '5px' }}
               position="start"
             >
-              <AccountCircle fontSize="inherit" />
+              <EmailIcon fontSize="inherit" />
             </InputAdornment>
           ),
         },

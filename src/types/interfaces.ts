@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 
 interface ChildrenOnlyProps {
   children: ReactElement[];
@@ -17,12 +17,20 @@ interface NavButtonProps {
 
 interface CustomFieldProps<T extends FieldValues> {
   register: UseFormRegister<T>;
-  errors: FieldErrors<T>;
+  error: string | undefined;
   isPending: boolean;
+}
+
+interface CustomPasswordProps<T extends FieldValues>
+  extends CustomFieldProps<T> {
+  labelI18nKey: string;
+  errorI18nKey: string;
+  fieldName: string;
 }
 
 interface CustomFormButtonProps {
   isPending: boolean;
+  btnI18nKey: string;
 }
 
 export type {
@@ -31,4 +39,5 @@ export type {
   NavButtonProps,
   CustomFieldProps,
   CustomFormButtonProps,
+  CustomPasswordProps,
 };

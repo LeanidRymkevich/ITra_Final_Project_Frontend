@@ -4,7 +4,10 @@ import { useTranslation } from 'react-i18next';
 import LoginIcon from '@mui/icons-material/Login';
 import { CustomFormButtonProps } from '../../../types/interfaces';
 
-const CustomFormButton: FC<CustomFormButtonProps> = ({ isPending }) => {
+const CustomFormButton: FC<CustomFormButtonProps> = ({
+  isPending,
+  btnI18nKey,
+}) => {
   const { t } = useTranslation();
 
   return (
@@ -20,7 +23,7 @@ const CustomFormButton: FC<CustomFormButtonProps> = ({ isPending }) => {
       loadingPosition="end"
       endIcon={<LoginIcon />}
     >
-      {t('header:SignIn')}
+      {t(`header:${btnI18nKey}`)}
     </LoadingButton>
   );
 };
