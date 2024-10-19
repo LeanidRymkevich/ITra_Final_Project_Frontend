@@ -11,19 +11,31 @@ import LockPersonIcon from '@mui/icons-material/LockPerson';
 import CustomEmailField from '../components/UI/FormFields/CustomEmailField';
 import CustomPasswordField from '../components/UI/FormFields/CustomPasswordField';
 import CustomFormButton from '../components/UI/FormFields/CustomFormButton';
-import { FormEventHandler, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
+
+import { useForm } from 'react-hook-form';
+
+import { yupResolver } from '@hookform/resolvers/yup/dist/yup.js';
+import signInSchema, { signInFormData } from '../yup_schemes/signInSchema';
 
 const SignInPage = () => {
   const [error, setError] = useState<string>('');
 
   const { t } = useTranslation();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<signInFormData>({
+    resolver: yupResolver(signInSchema),
+  });
+
   const checkboxRef = useRef<HTMLInputElement | null>(null);
 
-  const onSubmit: FormEventHandler<HTMLFormElement> = (event) => {
-    event.preventDefault();
-    console.log(
-      Array.from(new FormData(event.target as HTMLFormElement).entries())
-    );
+  const onSubmit = (data: signInFormData) => {
+    console.log('submitted');
+    console.log(data);
     console.log(checkboxRef.current?.checked);
   };
 
@@ -35,9 +47,13 @@ const SignInPage = () => {
         <Typography sx={{ marginBottom: 1 }} variant="body1">
           {t('auth:SignInWelcomeMsg')}
         </Typography>
-        <form className="auth-form" onSubmit={onSubmit} noValidate>
-          <CustomEmailField />
-          <CustomPasswordField />
+        <form
+          className="auth-form"
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+        >
+          <CustomEmailField {...{ register, errors }} />
+          <CustomPasswordField {...{ register, errors }} />
           {error && (
             <Alert
               severity="error"

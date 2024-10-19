@@ -1,43 +1,37 @@
 import { VisibilityOff, Visibility } from '@mui/icons-material';
 import { InputAdornment, IconButton, TextField } from '@mui/material';
-import { FC, FocusEventHandler, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { isEmpty } from 'validator';
+import { CustomFieldProps } from '../../../types/interfaces';
+import { FieldValues, Path } from 'react-hook-form';
 
-const CustomPasswordField: FC = () => {
+const PASSWORD_INPUT_ID = 'password-input-with-icon';
+
+const CustomPasswordField = <T extends FieldValues>({
+  register,
+  errors,
+}: CustomFieldProps<T>) => {
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState<string>('');
   const { t } = useTranslation();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const onBlur: FocusEventHandler<HTMLInputElement> = (event) => {
-    const value: string = event.target.value;
-    if (isEmpty(value)) {
-      setError(t('auth:PasswordError'));
-      return;
-    }
-    setError('');
-  };
-
   return (
     <TextField
       type={showPassword ? 'text' : 'password'}
-      id="password-input-with-icon"
+      id={PASSWORD_INPUT_ID}
       label={t('auth:Password')}
-      name="password"
       size="small"
-      onBlur={onBlur}
-      error={!!error}
-      helperText={error}
+      error={!!errors.password?.message}
+      helperText={errors.password?.message && t('auth:PasswordError')}
       fullWidth
       variant="outlined"
+      {...register('password' as Path<T>)}
       slotProps={{
         input: {
           endAdornment: (
             <InputAdornment position="end">
               <IconButton
-                aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
                 edge="end"
                 size="small"

@@ -1,35 +1,28 @@
 import { AccountCircle } from '@mui/icons-material';
 import { TextField, InputAdornment } from '@mui/material';
-import { FC, FocusEventHandler, useState } from 'react';
+import { FieldValues, Path } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { isEmail, isEmpty } from 'validator';
+import { CustomFieldProps } from '../../../types/interfaces';
 
-const CustomEmailField: FC = () => {
+const EMAIL_INPUT_ID = 'email-input-with-icon';
+
+const CustomEmailField = <T extends FieldValues>({
+  register,
+  errors,
+}: CustomFieldProps<T>) => {
   const { t } = useTranslation();
-
-  const [error, setError] = useState<string>('');
-
-  const onBlur: FocusEventHandler<HTMLInputElement> = (event) => {
-    const value: string = event.target.value;
-    if (isEmpty(value) || isEmail(value)) {
-      setError(t('auth:EmailError'));
-      return;
-    }
-    setError('');
-  };
 
   return (
     <TextField
-      id="email-input-with-icon"
+      id={EMAIL_INPUT_ID}
       label={t('auth:Email')}
-      name="email"
       type="email"
       size="small"
-      onBlur={onBlur}
-      error={!!error}
-      helperText={error}
+      error={!!errors.email?.message}
+      helperText={errors.email?.message && t('auth:EmailError')}
       fullWidth
       variant="outlined"
+      {...register('email' as Path<T>)}
       slotProps={{
         input: {
           endAdornment: (

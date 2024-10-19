@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
 
 interface ChildrenOnlyProps {
   children: ReactElement[];
@@ -14,4 +15,14 @@ interface NavButtonProps {
   children: ReactElement | string;
 }
 
-export type { ChildrenOnlyProps, NavigationBarProps, NavButtonProps };
+interface CustomFieldProps<T extends FieldValues> {
+  register: UseFormRegister<T>;
+  errors: FieldErrors<T>;
+}
+
+export type {
+  ChildrenOnlyProps,
+  NavigationBarProps,
+  NavButtonProps,
+  CustomFieldProps,
+};
