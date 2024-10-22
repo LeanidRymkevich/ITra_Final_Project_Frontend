@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigate } from 'react-router-dom';
 
 import {
   Container,
@@ -27,9 +28,11 @@ import { saveAuthStateToLS } from '../utils/localStorageUtils';
 import signUpSchema, { signUpFormData } from '../yup_schemes/signUpSchema';
 
 import { ServerResponseError } from '../types/interfaces';
+import { PATHS } from '../types/enums';
 
 const SignUpPage = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
   const [signUp, { isLoading }] = useSignUpMutation();
@@ -129,6 +132,12 @@ const SignUpPage = () => {
             disabled={isLoading}
           />
           <CustomFormButton isLoading={isLoading} btnI18nKey="SignUp" />
+          <CustomFormButton
+            type="button"
+            isLoading={isLoading}
+            btnI18nKey="GoToSignIn"
+            onClick={() => navigate(PATHS.SIGN_IN)}
+          />
         </form>
       </Stack>
     </Container>

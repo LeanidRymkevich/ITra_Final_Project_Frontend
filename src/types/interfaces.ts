@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { MouseEventHandler, ReactElement } from 'react';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
 
 import { USER_ROLES, USER_STATUS } from './enums';
@@ -33,6 +33,8 @@ interface CustomPasswordProps<T extends FieldValues>
 interface CustomFormButtonProps {
   isLoading: boolean;
   btnI18nKey: string;
+  onClick?: MouseEventHandler;
+  type?: 'button' | 'submit';
 }
 
 interface AuthState {

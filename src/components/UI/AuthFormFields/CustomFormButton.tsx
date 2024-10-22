@@ -9,18 +9,20 @@ import { CustomFormButtonProps } from '../../../types/interfaces';
 const CustomFormButton: FC<CustomFormButtonProps> = ({
   isLoading,
   btnI18nKey,
+  onClick,
+  type,
 }) => {
   const { t } = useTranslation();
 
   return (
     <LoadingButton
-      type="submit"
+      onClick={onClick}
+      type={type || 'submit'}
       variant="outlined"
       color="info"
       size="small"
       disableElevation
       fullWidth
-      sx={{ my: 2 }}
       loading={isLoading}
       loadingPosition="end"
       endIcon={<LoginIcon />}

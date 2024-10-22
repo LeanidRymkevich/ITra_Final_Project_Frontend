@@ -1,8 +1,10 @@
+import Container from '@mui/material/Container';
+
 const AdminPage = () => {
   return (
-    <div>
+    <Container maxWidth="xl">
       <h1>Admin's Page</h1>
-    </div>
+    </Container>
   );
 };
 

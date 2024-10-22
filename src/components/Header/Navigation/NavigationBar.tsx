@@ -64,25 +64,23 @@ const NavigationBar: FC<NavigationBarProps> = ({
     </Box>
   );
   return (
-    <nav>
-      <Drawer
-        container={() => window.document.body}
-        variant="temporary"
-        open={isMenuOpen}
-        onClose={handleMenuToggle}
-        ModalProps={{
-          keepMounted: true,
-        }}
-        sx={{
-          '& .MuiDrawer-paper': {
-            boxSizing: 'border-box',
-            width: MENU_WIDTH,
-          },
-        }}
-      >
-        {drawer}
-      </Drawer>
-    </nav>
+    <Drawer
+      container={() => window.document.body}
+      variant="temporary"
+      open={isMenuOpen}
+      onClose={handleMenuToggle}
+      ModalProps={{
+        keepMounted: true,
+      }}
+      sx={{
+        '& .MuiDrawer-paper': {
+          boxSizing: 'border-box',
+          width: MENU_WIDTH,
+        },
+      }}
+    >
+      {drawer}
+    </Drawer>
   );
 };
 

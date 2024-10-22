@@ -24,7 +24,10 @@ const Layout: FC = () => {
         }}
       >
         <Header />
-        <Box component={'main'} sx={{ flexGrow: 1 }}>
+        <Box
+          component={'main'}
+          sx={{ flexGrow: 1, marginTop: '0px !important' }}
+        >
           <Outlet />
         </Box>
       </Stack>
