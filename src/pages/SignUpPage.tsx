@@ -1,4 +1,8 @@
+import { useState, useRef } from 'react';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { yupResolver } from '@hookform/resolvers/yup';
+
 import {
   Container,
   Stack,
@@ -7,27 +11,30 @@ import {
   FormControlLabel,
   Checkbox,
 } from '@mui/material';
-import { useState, useRef } from 'react';
-import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
+import LockPersonIcon from '@mui/icons-material/LockPerson';
+
 import CustomEmailField from '../components/UI/AuthFormFields/CustomEmailField';
 import CustomFormButton from '../components/UI/AuthFormFields/CustomFormButton';
 import CustomPasswordField from '../components/UI/AuthFormFields/CustomPasswordField';
-import signUpSchema, { signUpFormData } from '../yup_schemes/signUpSchema';
-import LockPersonIcon from '@mui/icons-material/LockPerson';
 import CustomUserNameField from '../components/UI/AuthFormFields/CustomUserNameField';
+
 import { useAppDispatch } from '../hooks/reduxHooks';
 import { setState } from '../redux/AuthSlice/AuthSlice';
-import { USER_STATUS, USER_ROLES } from '../types/enums';
-import { User } from '../types/interfaces';
+import { useSignUpMutation } from '../services/AuthService';
+
 import { saveAuthStateToLS } from '../utils/localStorageUtils';
 
+import signUpSchema, { signUpFormData } from '../yup_schemes/signUpSchema';
+
+import { ServerResponseError } from '../types/interfaces';
+
 const SignUpPage = () => {
-  const [error, setError] = useState<string>('');
-  const isLoading = false;
   const { t } = useTranslation();
 
   const dispatch = useAppDispatch();
+  const [signUp, { isLoading }] = useSignUpMutation();
+
+  const [error, setError] = useState<string>('');
 
   const {
     register,
@@ -39,21 +46,18 @@ const SignUpPage = () => {
 
   const checkboxRef = useRef<HTMLInputElement | null>(null);
 
-  const onSubmit = (data: signUpFormData) => {
-    // TODO not sending request to the server yet
-    const user: User = {
-      id: '1',
-      username: data.username,
-      email: data.email,
-      status: USER_STATUS.ACTIVE,
-      role: USER_ROLES.ADMIN,
-    };
+  const onSubmit = async (data: signUpFormData): Promise<void> => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { repeatPassword, ...payload } = data;
 
-    const token = 'some token from server';
-    const testServerResp = { data: user, token };
-
-    if (checkboxRef.current?.checked) saveAuthStateToLS(testServerResp);
-    dispatch(setState(testServerResp));
+    try {
+      const resp = await signUp(payload).unwrap();
+      if (checkboxRef.current?.checked) saveAuthStateToLS(resp);
+      dispatch(setState(resp));
+    } catch (err) {
+      const { data } = err as ServerResponseError;
+      setError(data.error);
+    }
   };
 
   return (

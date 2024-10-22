@@ -28,10 +28,12 @@ import { saveAuthStateToLS } from '../utils/localStorageUtils';
 import { ServerResponseError } from '../types/interfaces';
 
 const SignInPage = () => {
-  const [error, setError] = useState<string>('');
   const { t } = useTranslation();
-  const [signIn, { isLoading }] = useSignInMutation();
+
   const dispatch = useAppDispatch();
+  const [signIn, { isLoading }] = useSignInMutation();
+
+  const [error, setError] = useState<string>('');
 
   const {
     register,
