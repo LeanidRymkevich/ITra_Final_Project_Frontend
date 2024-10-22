@@ -7,6 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { APP_TITLE } from '../../constants/constants';
 import NavigationBar from './Navigation/NavigationBar';
 import LangSwitcher from '../UI/LangSwitcher';
+import UserMenu from '../UI/UserMenu';
 
 const Header: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,6 +37,7 @@ const Header: FC = () => {
           {APP_TITLE}
         </Typography>
         <SearchField />
+        <UserMenu />
         <LangSwitcher />
         <ModeSwitcher />
       </CustomAppBar>
