@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
-import { REDUX_REDUCERS } from '../../types/enums';
+import { REDUX_REDUCERS, USER_ROLES } from '../../types/enums';
 import { AuthState, AuthResponse } from '../../types/interfaces';
 
 const initialState: AuthState = {
@@ -34,7 +34,7 @@ export const selectToken = (state: RootState): string | null =>
   state[REDUX_REDUCERS.AUTH].token;
 export const selectUsername = (state: RootState): string | null =>
   state[REDUX_REDUCERS.AUTH].username;
-export const selectRole = (state: RootState): string | null =>
+export const selectRole = (state: RootState): USER_ROLES | null =>
   state[REDUX_REDUCERS.AUTH].role;
 
 export default AuthSlice.reducer;

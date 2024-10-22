@@ -1,17 +1,19 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { PATHS, USER_ROLES } from '../types/enums';
 
 import Layout from '../components/Layout';
-import commonRoutes from './commonRoutes';
 import NotFoundPage from '../pages/NotFoundPage';
 
+import commonRoutes from './commonRoutes';
 import { publicRoutes } from './publicRoutes';
 import { userRoutes, adminRoutes } from './privateRoutes';
 
+import { selectRole } from '../redux/AuthSlice/AuthSlice';
+
 const Router = () => {
-  // TODO Later change to getting authentication state, currently null for not authenticated user
-  const role: USER_ROLES | null = (() => null)();
+  const role: USER_ROLES | null = useSelector(selectRole);
 
   return (
     <BrowserRouter>

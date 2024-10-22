@@ -1,4 +1,6 @@
 import { FC } from 'react';
+import { useSelector } from 'react-redux';
+
 import { NavigationBarProps } from '../../../types/interfaces';
 import {
   Box,
@@ -14,6 +16,7 @@ import CommonLinks from './CommonLinks';
 import CloseIcon from '@mui/icons-material/Close';
 import PublicLinks from './PublicLinks';
 import PrivateLinks from './PrivateLinks';
+import { selectRole } from '../../../redux/AuthSlice/AuthSlice';
 
 const MENU_WIDTH = {
   xs: '70%',
@@ -24,8 +27,7 @@ const NavigationBar: FC<NavigationBarProps> = ({
   isMenuOpen,
   handleMenuToggle,
 }) => {
-  // TODO Later change to getting authentication state, currently null for not authenticated user
-  const role: USER_ROLES | null = (() => null)();
+  const role: USER_ROLES | null = useSelector(selectRole);
 
   const drawer = (
     <Box sx={{ textAlign: 'center' }}>
