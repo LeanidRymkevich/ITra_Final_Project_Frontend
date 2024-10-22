@@ -4,11 +4,10 @@ import { RootState } from '../store';
 
 import { REDUX_REDUCERS, USER_ROLES } from '../../types/enums';
 import { AuthState, AuthResponse } from '../../types/interfaces';
+import { getAuthStateFromLS } from '../../utils/localStorageUtils';
 
 const initialState: AuthState = {
-  token: null,
-  username: null,
-  role: null,
+  ...getAuthStateFromLS(),
 };
 
 export const AuthSlice = createSlice({

@@ -11,6 +11,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 import { resetState, selectUsername } from '../../redux/AuthSlice/AuthSlice';
 import { useAppDispatch } from '../../hooks/reduxHooks';
+import { resetAuthStateInLS } from '../../utils/localStorageUtils';
 
 const noBgOnHover = [
   () => ({
@@ -41,6 +42,7 @@ const UserMenu: FC = () => {
   };
 
   const handleSignOut = (): void => {
+    resetAuthStateInLS();
     dispatch(resetState());
     handleClose();
   };

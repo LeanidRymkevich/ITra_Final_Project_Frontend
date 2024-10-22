@@ -26,10 +26,6 @@ enum USER_STATUS {
   ACTIVE = 'active',
 }
 
-enum LOCAL_STORAGE_KEYS {
-  LANG = 'lang',
-}
-
 enum LANGUAGES {
   EN = 'en',
   RU = 'ru',
@@ -39,11 +35,4 @@ enum REDUX_REDUCERS {
   AUTH = 'auth',
 }
 
-export {
-  PATHS,
-  USER_ROLES,
-  LOCAL_STORAGE_KEYS,
-  LANGUAGES,
-  REDUX_REDUCERS,
-  USER_STATUS,
-};
+export { PATHS, USER_ROLES, LANGUAGES, REDUX_REDUCERS, USER_STATUS };

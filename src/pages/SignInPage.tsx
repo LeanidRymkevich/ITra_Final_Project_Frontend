@@ -21,6 +21,7 @@ import { useAppDispatch } from '../hooks/reduxHooks';
 import { User } from '../types/interfaces';
 import { USER_ROLES, USER_STATUS } from '../types/enums';
 import { setState } from '../redux/AuthSlice/AuthSlice';
+import { saveAuthStateToLS } from '../utils/localStorageUtils';
 
 const SignInPage = () => {
   const [error, setError] = useState<string>('');
@@ -48,9 +49,11 @@ const SignInPage = () => {
       status: USER_STATUS.ACTIVE,
       role: USER_ROLES.ADMIN,
     };
+    const token = 'some token from server';
+    const testServerResp = { data: user, token };
 
-    //TODO if remember me chose save to LocalStorage
-    dispatch(setState({ data: user, token: 'some token from server' }));
+    if (checkboxRef.current?.checked) saveAuthStateToLS(testServerResp);
+    dispatch(setState(testServerResp));
   };
 
   return (
