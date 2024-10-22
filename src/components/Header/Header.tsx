@@ -8,8 +8,11 @@ import { APP_TITLE } from '../../constants/constants';
 import NavigationBar from './Navigation/NavigationBar';
 import LangSwitcher from '../UI/LangSwitcher';
 import UserMenu from '../UI/UserMenu';
+import { selectToken } from '../../redux/AuthSlice/AuthSlice';
+import { useSelector } from 'react-redux';
 
 const Header: FC = () => {
+  const token: string | null = useSelector(selectToken);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleMenuToggle = () => {
@@ -37,7 +40,7 @@ const Header: FC = () => {
           {APP_TITLE}
         </Typography>
         <SearchField />
-        <UserMenu />
+        {token ? <UserMenu /> : <></>}
         <LangSwitcher />
         <ModeSwitcher />
       </CustomAppBar>

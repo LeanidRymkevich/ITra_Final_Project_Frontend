@@ -1,14 +1,22 @@
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { FC, useState, MouseEvent } from 'react';
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+
 import { Button, IconButton, Typography } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { FC, useState, MouseEvent } from 'react';
-import { useTranslation } from 'react-i18next';
+
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LogoutIcon from '@mui/icons-material/Logout';
+
+import { resetState, selectUsername } from '../../redux/AuthSlice/AuthSlice';
+import { useAppDispatch } from '../../hooks/reduxHooks';
 
 const noBgOnHover = [
   () => ({
     display: 'flex',
     flexWrap: 'wrap',
+    alignItems: 'center',
     '&:hover': {
       background: 'none',
       cursor: 'auto',
@@ -17,17 +25,24 @@ const noBgOnHover = [
 ];
 
 const UserMenu: FC = () => {
+  const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+  const username: string | null = useSelector(selectUsername);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const { t, i18n } = useTranslation();
 
   const open = Boolean(anchorEl);
 
-  const handleClick = (event: MouseEvent<HTMLElement>) => {
+  const handleClick = (event: MouseEvent<HTMLElement>): void => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = (event: MouseEvent<HTMLElement>) => {
+  const handleClose = (): void => {
     setAnchorEl(null);
+  };
+
+  const handleSignOut = (): void => {
+    dispatch(resetState());
+    handleClose();
   };
 
   return (
@@ -54,16 +69,17 @@ const UserMenu: FC = () => {
           </Typography>
           &nbsp;
           <Typography color="primary" noWrap variant="body1">
-            {`${'Oleg'}!`}
+            {`${username}!`}
           </Typography>
         </MenuItem>
         <MenuItem disableRipple sx={noBgOnHover}>
           <Button
             variant="contained"
-            sx={{ width: '100%', pointerEvents: 'all' }}
-            onClick={handleClose}
+            sx={{ width: '100%' }}
+            onClick={handleSignOut}
           >
             {t('header:SignOut')}
+            <LogoutIcon sx={{ marginLeft: 1 }} />
           </Button>
         </MenuItem>
       </Menu>
