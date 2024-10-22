@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -10,10 +11,37 @@ import commonRoutes from './commonRoutes';
 import { publicRoutes } from './publicRoutes';
 import { userRoutes, adminRoutes } from './privateRoutes';
 
-import { selectRole } from '../redux/AuthSlice/AuthSlice';
+import {
+  resetState,
+  selectRole,
+  selectToken,
+} from '../redux/AuthSlice/AuthSlice';
+import { useAppDispatch } from '../hooks/reduxHooks';
+import { useCheckTokenMutation } from '../services/AuthService';
+
+import { resetAuthStateInLS } from '../utils/localStorageUtils';
 
 const Router = () => {
+  const dispatch = useAppDispatch();
+  const [checkToken] = useCheckTokenMutation();
   const role: USER_ROLES | null = useSelector(selectRole);
+  const token: string | null = useSelector(selectToken);
+
+  // if store has a token check it before building the App
+  useEffect(() => {
+    const initialTokenCheck = async (): Promise<void> => {
+      if (!token) return;
+      try {
+        await checkToken({}).unwrap();
+      } catch {
+        dispatch(resetState());
+        resetAuthStateInLS();
+      }
+    };
+
+    initialTokenCheck();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <BrowserRouter>

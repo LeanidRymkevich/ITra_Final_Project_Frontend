@@ -45,5 +45,6 @@ const authService = createApi({
   }),
 });
 
-export const { useSignInMutation, useSignUpMutation } = authService;
+export const { useSignInMutation, useSignUpMutation, useCheckTokenMutation } =
+  authService;
 export default authService;
