@@ -9,7 +9,7 @@ import {
   IconButton,
 } from '@mui/material';
 import { APP_TITLE } from '../../../constants/constants';
-import { ROLES } from '../../../types/enums';
+import { USER_ROLES } from '../../../types/enums';
 import CommonLinks from './CommonLinks';
 import CloseIcon from '@mui/icons-material/Close';
 import PublicLinks from './PublicLinks';
@@ -25,7 +25,7 @@ const NavigationBar: FC<NavigationBarProps> = ({
   handleMenuToggle,
 }) => {
   // TODO Later change to getting authentication state, currently null for not authenticated user
-  const role: ROLES | null = (() => null)();
+  const role: USER_ROLES | null = (() => null)();
 
   const drawer = (
     <Box sx={{ textAlign: 'center' }}>

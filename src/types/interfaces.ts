@@ -1,6 +1,8 @@
 import { ReactElement } from 'react';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
 
+import { USER_ROLES, USER_STATUS } from './enums';
+
 interface ChildrenOnlyProps {
   children: ReactElement[];
 }
@@ -33,6 +35,25 @@ interface CustomFormButtonProps {
   btnI18nKey: string;
 }
 
+interface AuthState {
+  token: string | null;
+  username: string | null;
+  role: USER_ROLES | null;
+}
+
+interface User {
+  id: string;
+  username: string;
+  email: string;
+  status: USER_STATUS;
+  role: USER_ROLES;
+}
+
+interface AuthResponse {
+  data: User;
+  token: string;
+}
+
 export type {
   ChildrenOnlyProps,
   NavigationBarProps,
@@ -40,4 +61,7 @@ export type {
   CustomFieldProps,
   CustomFormButtonProps,
   CustomPasswordProps,
+  AuthState,
+  User,
+  AuthResponse,
 };

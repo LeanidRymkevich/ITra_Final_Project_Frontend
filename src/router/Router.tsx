@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { PATHS, ROLES } from '../types/enums';
+import { PATHS, USER_ROLES } from '../types/enums';
 
 import Layout from '../components/Layout';
 import commonRoutes from './commonRoutes';
@@ -11,7 +11,7 @@ import { userRoutes, adminRoutes } from './privateRoutes';
 
 const Router = () => {
   // TODO Later change to getting authentication state, currently null for not authenticated user
-  const role: ROLES | null = (() => null)();
+  const role: USER_ROLES | null = (() => null)();
 
   return (
     <BrowserRouter>
@@ -20,7 +20,7 @@ const Router = () => {
           {commonRoutes}
           {!role
             ? publicRoutes
-            : role === ROLES.USER
+            : role === USER_ROLES.USER
             ? userRoutes
             : adminRoutes}
           <Route path={PATHS.NOT_EXIST} element={<NotFoundPage />} />

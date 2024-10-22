@@ -16,9 +16,14 @@ enum PATHS {
   NOT_EXIST = '*',
 }
 
-enum ROLES {
+enum USER_ROLES {
   ADMIN = 'admin',
   USER = 'user',
+}
+
+enum USER_STATUS {
+  BLOCKED = 'blocked',
+  ACTIVE = 'active',
 }
 
 enum LOCAL_STORAGE_KEYS {
@@ -30,4 +35,15 @@ enum LANGUAGES {
   RU = 'ru',
 }
 
-export { PATHS, ROLES, LOCAL_STORAGE_KEYS, LANGUAGES };
+enum REDUX_REDUCERS {
+  AUTH = 'auth',
+}
+
+export {
+  PATHS,
+  USER_ROLES,
+  LOCAL_STORAGE_KEYS,
+  LANGUAGES,
+  REDUX_REDUCERS,
+  USER_STATUS,
+};

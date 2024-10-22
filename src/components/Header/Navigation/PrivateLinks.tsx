@@ -1,6 +1,6 @@
 import { Button, Collapse, List, ListItem } from '@mui/material';
 import { FC, useState } from 'react';
-import { PATHS, ROLES } from '../../../types/enums';
+import { PATHS, USER_ROLES } from '../../../types/enums';
 import NavButton from './NavButton';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
@@ -13,7 +13,7 @@ const COLLAPSE_BTN_STYLES = {
   textAlign: 'left',
 };
 
-const PrivateLinks: FC<{ role: ROLES }> = ({ role }) => {
+const PrivateLinks: FC<{ role: USER_ROLES }> = ({ role }) => {
   const { t } = useTranslation();
 
   const [isTemplateLinksListOpen, setIsTemplateLinksListOpen] = useState(false);
@@ -88,7 +88,7 @@ const PrivateLinks: FC<{ role: ROLES }> = ({ role }) => {
         </List>
       </Collapse>
 
-      {role === ROLES.ADMIN && (
+      {role === USER_ROLES.ADMIN && (
         <ListItem disablePadding>
           <NavButton href={PATHS.ADMIN_PAGE}>{t('header:AdminPage')}</NavButton>
         </ListItem>
