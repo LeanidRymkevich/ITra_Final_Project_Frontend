@@ -2,7 +2,7 @@ import { Route } from 'react-router-dom';
 
 import { PATHS } from '../types/enums';
 
-import AdminPage from '../pages/AdminPage';
+import AdminPage from '../pages/AdminPage/AdminPage';
 import userPageRoutes from './pageRoutes/userPageRoutes';
 import templatePageRoutes from './pageRoutes/templatePageRoutes';
 
@@ -20,12 +20,7 @@ const getPrivateRoutes = (
     <>
       {userPageRoutes}
       {templatePageRoutes}
-      {isAdmin && (
-        <Route
-          path={PATHS.ADMIN_PAGE}
-          element={<AdminPage />}
-        />
-      )}
+      {isAdmin && <Route path={PATHS.ADMIN_PAGE} element={<AdminPage />} />}
       {getRedirectRoutes(forbiddenPaths, redirectPath)}
     </>
   );

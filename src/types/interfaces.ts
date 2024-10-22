@@ -2,6 +2,7 @@ import { MouseEventHandler, ReactElement } from 'react';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
 
 import { USER_ROLES, USER_STATUS } from './enums';
+import { Order } from './types';
 
 interface ChildrenOnlyProps {
   children: (ReactElement | string)[] | (ReactElement | string);
@@ -72,6 +73,36 @@ interface ServerResponseError {
   status: number;
 }
 
+interface EnhancedTableHeadCell<T extends { id: string }> {
+  disablePadding: boolean;
+  id: keyof T;
+  label: string;
+  numeric: boolean;
+}
+
+interface EnhancedTableHeadProps<T extends { id: string }> {
+  numSelected: number;
+  onRequestSort: (event: React.MouseEvent<unknown>, property: keyof T) => void;
+  onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  order: Order;
+  orderBy: string;
+  rowCount: number;
+  headCells: readonly EnhancedTableHeadCell<T>[];
+}
+
+interface EnhancedTableToolbarProps {
+  numSelected: number;
+  tableName: string;
+  buttonsBar: JSX.Element;
+}
+
+interface EnhancedTableProps<T extends { id: string }> {
+  rows: T[];
+  tableName: string;
+  buttonsBar: JSX.Element;
+  headCells: readonly EnhancedTableHeadCell<T>[];
+}
+
 export type {
   ChildrenOnlyProps,
   NavigationBarProps,
@@ -85,4 +116,8 @@ export type {
   SignInRequest,
   SignUpRequest,
   ServerResponseError,
+  EnhancedTableHeadCell,
+  EnhancedTableHeadProps,
+  EnhancedTableToolbarProps,
+  EnhancedTableProps,
 };
