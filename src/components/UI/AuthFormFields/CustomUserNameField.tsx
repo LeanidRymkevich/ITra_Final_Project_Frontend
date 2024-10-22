@@ -11,7 +11,7 @@ const INPUT_ID = 'username-input-with-icon';
 const CustomUserNameField = <T extends FieldValues>({
   register,
   error,
-  isPending,
+  isLoading,
 }: CustomFieldProps<T>) => {
   const { t } = useTranslation();
 
@@ -24,7 +24,7 @@ const CustomUserNameField = <T extends FieldValues>({
       error={!!error}
       helperText={error && t('auth:UserNameError')}
       fullWidth
-      disabled={isPending}
+      disabled={isLoading}
       variant="outlined"
       {...register('username' as Path<T>)}
       slotProps={{

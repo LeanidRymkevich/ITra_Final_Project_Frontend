@@ -11,7 +11,7 @@ const EMAIL_INPUT_ID = 'email-input-with-icon';
 const CustomEmailField = <T extends FieldValues>({
   register,
   error,
-  isPending,
+  isLoading,
 }: CustomFieldProps<T>) => {
   const { t } = useTranslation();
 
@@ -24,7 +24,7 @@ const CustomEmailField = <T extends FieldValues>({
       error={!!error}
       helperText={error && t('auth:EmailError')}
       fullWidth
-      disabled={isPending}
+      disabled={isLoading}
       variant="outlined"
       {...register('email' as Path<T>)}
       slotProps={{

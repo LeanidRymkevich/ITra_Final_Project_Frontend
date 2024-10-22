@@ -35,4 +35,29 @@ enum REDUX_REDUCERS {
   AUTH = 'auth',
 }
 
-export { PATHS, USER_ROLES, LANGUAGES, REDUX_REDUCERS, USER_STATUS };
+enum ENDPOINTS {
+  ROOT = '/',
+  LOCALES = '/locales',
+  AUTH = '/auth',
+  ADMIN = '/admin',
+}
+
+enum AUTH_ENDPOINTS {
+  SIGN_IN = '/sign_in',
+  SIGN_UP = '/sign_up',
+}
+
+enum SERVICES_NAMES {
+  AUTH = 'authService',
+}
+
+export {
+  PATHS,
+  USER_ROLES,
+  LANGUAGES,
+  REDUX_REDUCERS,
+  USER_STATUS,
+  ENDPOINTS,
+  AUTH_ENDPOINTS,
+  SERVICES_NAMES,
+};

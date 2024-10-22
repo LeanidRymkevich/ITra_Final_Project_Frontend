@@ -24,7 +24,7 @@ import { saveAuthStateToLS } from '../utils/localStorageUtils';
 
 const SignUpPage = () => {
   const [error, setError] = useState<string>('');
-  const isPending = false;
+  const isLoading = false;
   const { t } = useTranslation();
 
   const dispatch = useAppDispatch();
@@ -84,16 +84,16 @@ const SignUpPage = () => {
           noValidate
         >
           <CustomUserNameField
-            {...{ register, error: errors.username?.message, isPending }}
+            {...{ register, error: errors.username?.message, isLoading }}
           />
           <CustomEmailField
-            {...{ register, error: errors.email?.message, isPending }}
+            {...{ register, error: errors.email?.message, isLoading }}
           />
           <CustomPasswordField
             {...{
               register,
               error: errors.password?.message,
-              isPending,
+              isLoading,
               labelI18nKey: 'Password',
               errorI18nKey: 'SignUpPasswordError',
               fieldName: 'password',
@@ -103,7 +103,7 @@ const SignUpPage = () => {
             {...{
               register,
               error: errors.repeatPassword?.message,
-              isPending,
+              isLoading,
               labelI18nKey: 'RepeatPassword',
               errorI18nKey: 'SignUpPasswordError',
               fieldName: 'repeatPassword',
@@ -122,9 +122,9 @@ const SignUpPage = () => {
           <FormControlLabel
             control={<Checkbox inputRef={checkboxRef} />}
             label={t('auth:RememberMe')}
-            disabled={isPending}
+            disabled={isLoading}
           />
-          <CustomFormButton isPending={isPending} btnI18nKey="SignUp" />
+          <CustomFormButton isLoading={isLoading} btnI18nKey="SignUp" />
         </form>
       </Stack>
     </Container>

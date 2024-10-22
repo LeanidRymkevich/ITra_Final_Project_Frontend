@@ -1,3 +1,8 @@
+import { useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { yupResolver } from '@hookform/resolvers/yup/dist/yup.js';
+
 import {
   Alert,
   Checkbox,
@@ -6,28 +11,26 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import { useTranslation } from 'react-i18next';
 import LockPersonIcon from '@mui/icons-material/LockPerson';
+
 import CustomEmailField from '../components/UI/AuthFormFields/CustomEmailField';
 import CustomPasswordField from '../components/UI/AuthFormFields/CustomPasswordField';
 import CustomFormButton from '../components/UI/AuthFormFields/CustomFormButton';
-import { useRef, useState } from 'react';
 
-import { useForm } from 'react-hook-form';
-
-import { yupResolver } from '@hookform/resolvers/yup/dist/yup.js';
 import signInSchema, { signInFormData } from '../yup_schemes/signInSchema';
+
 import { useAppDispatch } from '../hooks/reduxHooks';
-import { User } from '../types/interfaces';
-import { USER_ROLES, USER_STATUS } from '../types/enums';
 import { setState } from '../redux/AuthSlice/AuthSlice';
+import { useSignInMutation } from '../services/AuthService';
+
 import { saveAuthStateToLS } from '../utils/localStorageUtils';
+
+import { ServerResponseError } from '../types/interfaces';
 
 const SignInPage = () => {
   const [error, setError] = useState<string>('');
-  const isPending = false;
   const { t } = useTranslation();
-
+  const [signIn, { isLoading }] = useSignInMutation();
   const dispatch = useAppDispatch();
 
   const {
@@ -40,20 +43,15 @@ const SignInPage = () => {
 
   const checkboxRef = useRef<HTMLInputElement | null>(null);
 
-  const onSubmit = (data: signInFormData) => {
-    // TODO not sending request to the server yet
-    const user: User = {
-      id: '1',
-      username: 'Oleg',
-      email: data.email,
-      status: USER_STATUS.ACTIVE,
-      role: USER_ROLES.ADMIN,
-    };
-    const token = 'some token from server';
-    const testServerResp = { data: user, token };
-
-    if (checkboxRef.current?.checked) saveAuthStateToLS(testServerResp);
-    dispatch(setState(testServerResp));
+  const onSubmit = async (data: signInFormData): Promise<void> => {
+    try {
+      const resp = await signIn(data).unwrap();
+      if (checkboxRef.current?.checked) saveAuthStateToLS(resp);
+      dispatch(setState(resp));
+    } catch (err) {
+      const { data } = err as ServerResponseError;
+      setError(data.error);
+    }
   };
 
   return (
@@ -84,13 +82,13 @@ const SignInPage = () => {
           noValidate
         >
           <CustomEmailField
-            {...{ register, error: errors.email?.message, isPending }}
+            {...{ register, error: errors.email?.message, isLoading }}
           />
           <CustomPasswordField
             {...{
               register,
               error: errors.password?.message,
-              isPending,
+              isLoading,
               labelI18nKey: 'Password',
               errorI18nKey: 'PasswordError',
               fieldName: 'password',
@@ -109,9 +107,9 @@ const SignInPage = () => {
           <FormControlLabel
             control={<Checkbox inputRef={checkboxRef} />}
             label={t('auth:RememberMe')}
-            disabled={isPending}
+            disabled={isLoading}
           />
-          <CustomFormButton isPending={isPending} btnI18nKey="SignIn" />
+          <CustomFormButton isLoading={isLoading} btnI18nKey="SignIn" />
         </form>
       </Stack>
     </Container>

@@ -20,7 +20,7 @@ interface NavButtonProps {
 interface CustomFieldProps<T extends FieldValues> {
   register: UseFormRegister<T>;
   error: string | undefined;
-  isPending: boolean;
+  isLoading: boolean;
 }
 
 interface CustomPasswordProps<T extends FieldValues>
@@ -31,7 +31,7 @@ interface CustomPasswordProps<T extends FieldValues>
 }
 
 interface CustomFormButtonProps {
-  isPending: boolean;
+  isLoading: boolean;
   btnI18nKey: string;
 }
 
@@ -54,6 +54,22 @@ interface AuthResponse {
   token: string;
 }
 
+interface SignInRequest {
+  email: string;
+  password: string;
+}
+
+interface SignUpRequest extends SignInRequest {
+  username: string;
+}
+
+interface ServerResponseError {
+  data: {
+    error: string;
+  };
+  status: number;
+}
+
 export type {
   ChildrenOnlyProps,
   NavigationBarProps,
@@ -64,4 +80,7 @@ export type {
   AuthState,
   User,
   AuthResponse,
+  SignInRequest,
+  SignUpRequest,
+  ServerResponseError,
 };

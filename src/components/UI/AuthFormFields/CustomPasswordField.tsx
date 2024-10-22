@@ -12,7 +12,7 @@ const PASSWORD_INPUT_ID = 'input-with-icon';
 const CustomPasswordField = <T extends FieldValues>({
   register,
   error,
-  isPending,
+  isLoading,
   labelI18nKey,
   errorI18nKey,
   fieldName,
@@ -31,7 +31,7 @@ const CustomPasswordField = <T extends FieldValues>({
       error={!!error}
       helperText={error && t(`auth:${errorI18nKey}`)}
       fullWidth
-      disabled={isPending}
+      disabled={isLoading}
       variant="outlined"
       {...register(fieldName as Path<T>)}
       slotProps={{
@@ -42,7 +42,7 @@ const CustomPasswordField = <T extends FieldValues>({
                 onClick={handleClickShowPassword}
                 edge="end"
                 size="small"
-                disabled={isPending}
+                disabled={isLoading}
               >
                 {showPassword ? (
                   <VisibilityOff fontSize="inherit" />

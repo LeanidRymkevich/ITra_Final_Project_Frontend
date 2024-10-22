@@ -7,7 +7,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import { CustomFormButtonProps } from '../../../types/interfaces';
 
 const CustomFormButton: FC<CustomFormButtonProps> = ({
-  isPending,
+  isLoading,
   btnI18nKey,
 }) => {
   const { t } = useTranslation();
@@ -21,7 +21,7 @@ const CustomFormButton: FC<CustomFormButtonProps> = ({
       disableElevation
       fullWidth
       sx={{ my: 2 }}
-      loading={isPending}
+      loading={isLoading}
       loadingPosition="end"
       endIcon={<LoginIcon />}
     >
