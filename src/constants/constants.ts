@@ -1,6 +1,9 @@
 import { LANGUAGES } from '../types/enums';
 
-const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+const SERVER_URL =
+  import.meta.env.MODE === 'development'
+    ? import.meta.env.VITE_DEVELOPMENT_SERVER_URL
+    : import.meta.env.VITE_PRODUCTION_SERVER_URL;
 
 const APP_TITLE = 'QuestionForms';
 

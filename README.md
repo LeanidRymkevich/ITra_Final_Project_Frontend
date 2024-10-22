@@ -1,4 +1,4 @@
-# Sever description
+# Frontend description
 
 **App name**: _questionforms_.
 
