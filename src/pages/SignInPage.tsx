@@ -17,11 +17,17 @@ import { useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup.js';
 import signInSchema, { signInFormData } from '../yup_schemes/signInSchema';
+import { useAppDispatch } from '../hooks/reduxHooks';
+import { User } from '../types/interfaces';
+import { USER_ROLES, USER_STATUS } from '../types/enums';
+import { setState } from '../redux/AuthSlice/AuthSlice';
 
 const SignInPage = () => {
   const [error, setError] = useState<string>('');
   const isPending = false;
   const { t } = useTranslation();
+
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -34,9 +40,17 @@ const SignInPage = () => {
   const checkboxRef = useRef<HTMLInputElement | null>(null);
 
   const onSubmit = (data: signInFormData) => {
-    console.log('submitted');
-    console.log(data);
-    console.log(checkboxRef.current?.checked); // TODO use to decide store user data in LocalStorage or not
+    // TODO not sending request to the server yet
+    const user: User = {
+      id: '1',
+      username: 'Oleg',
+      email: data.email,
+      status: USER_STATUS.ACTIVE,
+      role: USER_ROLES.ADMIN,
+    };
+
+    //TODO if remember me chose save to LocalStorage
+    dispatch(setState({ data: user, token: 'some token from server' }));
   };
 
   return (
