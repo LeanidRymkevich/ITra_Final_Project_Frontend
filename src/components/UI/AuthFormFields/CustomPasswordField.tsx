@@ -1,9 +1,11 @@
-import { VisibilityOff, Visibility } from '@mui/icons-material';
-import { InputAdornment, IconButton, TextField } from '@mui/material';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CustomPasswordProps } from '../../../types/interfaces';
 import { FieldValues, Path } from 'react-hook-form';
+
+import { VisibilityOff, Visibility } from '@mui/icons-material';
+import { InputAdornment, IconButton, TextField } from '@mui/material';
+
+import { CustomPasswordProps } from '../../../types/interfaces';
 
 const PASSWORD_INPUT_ID = 'input-with-icon';
 

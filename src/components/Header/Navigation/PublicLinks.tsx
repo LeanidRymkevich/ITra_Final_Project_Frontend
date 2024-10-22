@@ -1,8 +1,11 @@
-import { ListItem } from '@mui/material';
 import { FC } from 'react';
-import { PATHS } from '../../../types/enums';
-import NavButton from './NavButton';
 import { useTranslation } from 'react-i18next';
+
+import { ListItem } from '@mui/material';
+
+import NavButton from './NavButton';
+
+import { PATHS } from '../../../types/enums';
 
 const PublicLinks: FC = () => {
   const { t } = useTranslation();

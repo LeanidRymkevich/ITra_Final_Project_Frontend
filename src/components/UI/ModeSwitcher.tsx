@@ -1,7 +1,9 @@
 import { FC } from 'react';
-import { IconButton, useColorScheme } from '@mui/material';
+
 import LightModeIcon from '@mui/icons-material/LightMode';
 import ModeNightIcon from '@mui/icons-material/ModeNight';
+import { IconButton, useColorScheme } from '@mui/material';
+
 import { getNextThemeMode } from '../../utils/themeModeUtils';
 
 const ModeSwitcher: FC = () => {

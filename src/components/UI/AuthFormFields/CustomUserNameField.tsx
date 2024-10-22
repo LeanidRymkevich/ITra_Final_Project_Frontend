@@ -1,8 +1,10 @@
-import { TextField, InputAdornment } from '@mui/material';
-import { FieldValues, Path } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { CustomFieldProps } from '../../../types/interfaces';
+import { FieldValues, Path } from 'react-hook-form';
+
+import { TextField, InputAdornment } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
+
+import { CustomFieldProps } from '../../../types/interfaces';
 
 const INPUT_ID = 'username-input-with-icon';
 

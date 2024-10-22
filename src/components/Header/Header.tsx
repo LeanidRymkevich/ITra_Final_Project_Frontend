@@ -1,15 +1,19 @@
 import { FC, useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import { IconButton, Typography } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+
 import ModeSwitcher from '../UI/ModeSwitcher';
 import CustomAppBar from './CustomAppBar';
 import SearchField from '../UI/SearchField';
-import MenuIcon from '@mui/icons-material/Menu';
-import { APP_TITLE } from '../../constants/constants';
 import NavigationBar from './Navigation/NavigationBar';
 import LangSwitcher from '../UI/LangSwitcher';
 import UserMenu from '../UI/UserMenu';
+
 import { selectToken } from '../../redux/AuthSlice/AuthSlice';
-import { useSelector } from 'react-redux';
+
+import { APP_TITLE } from '../../constants/constants';
 
 const Header: FC = () => {
   const token: string | null = useSelector(selectToken);

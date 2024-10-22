@@ -1,7 +1,9 @@
-import { Button } from '@mui/material';
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+
+import { Button } from '@mui/material';
+
 import { NavButtonProps } from '../../../types/interfaces';
 
 const NavButton: FC<NavButtonProps> = ({ href, children }) => {

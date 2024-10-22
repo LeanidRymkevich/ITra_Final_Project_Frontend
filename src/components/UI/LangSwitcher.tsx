@@ -1,10 +1,12 @@
-import LanguageIcon from '@mui/icons-material/Language';
+import { FC, useState, MouseEvent } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import { IconButton } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { FC, useState, MouseEvent } from 'react';
+import LanguageIcon from '@mui/icons-material/Language';
+
 import { LANGUAGES } from '../../types/enums';
-import { useTranslation } from 'react-i18next';
 
 const DATA_LANG_ATTR = 'lang';
 

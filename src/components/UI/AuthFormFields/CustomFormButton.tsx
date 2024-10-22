@@ -1,7 +1,9 @@
-import { LoadingButton } from '@mui/lab';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { LoadingButton } from '@mui/lab';
 import LoginIcon from '@mui/icons-material/Login';
+
 import { CustomFormButtonProps } from '../../../types/interfaces';
 
 const CustomFormButton: FC<CustomFormButtonProps> = ({

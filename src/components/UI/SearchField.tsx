@@ -1,10 +1,12 @@
-import { styled } from '@mui/material/styles';
-import { alpha, InputBase } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
 import { FC, KeyboardEventHandler, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PATHS } from '../../types/enums';
 import { useTranslation } from 'react-i18next';
+
+import { alpha, InputBase } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import { styled } from '@mui/material/styles';
+
+import { PATHS } from '../../types/enums';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',

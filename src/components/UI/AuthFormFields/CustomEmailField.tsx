@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
+import { FieldValues, Path } from 'react-hook-form';
+
 import EmailIcon from '@mui/icons-material/Email';
 import { TextField, InputAdornment } from '@mui/material';
-import { FieldValues, Path } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
+
 import { CustomFieldProps } from '../../../types/interfaces';
 
 const EMAIL_INPUT_ID = 'email-input-with-icon';

@@ -10,13 +10,16 @@ import {
   Drawer,
   IconButton,
 } from '@mui/material';
-import { APP_TITLE } from '../../../constants/constants';
-import { USER_ROLES } from '../../../types/enums';
-import CommonLinks from './CommonLinks';
 import CloseIcon from '@mui/icons-material/Close';
+
+import CommonLinks from './CommonLinks';
 import PublicLinks from './PublicLinks';
 import PrivateLinks from './PrivateLinks';
+
 import { selectRole } from '../../../redux/AuthSlice/AuthSlice';
+
+import { USER_ROLES } from '../../../types/enums';
+import { APP_TITLE } from '../../../constants/constants';
 
 const MENU_WIDTH = {
   xs: '70%',

@@ -1,6 +1,7 @@
 import { FC } from 'react';
-import CircularProgress from '@mui/material/CircularProgress';
+
 import { Backdrop } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const GRADIENT_ID = 'gradient';
 

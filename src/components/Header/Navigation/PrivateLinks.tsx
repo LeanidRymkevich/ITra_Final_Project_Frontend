@@ -1,9 +1,12 @@
-import { Button, Collapse, List, ListItem } from '@mui/material';
 import { FC, useState } from 'react';
-import { PATHS, USER_ROLES } from '../../../types/enums';
-import NavButton from './NavButton';
-import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
+
+import { Button, Collapse, List, ListItem } from '@mui/material';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
+
+import NavButton from './NavButton';
+
+import { PATHS, USER_ROLES } from '../../../types/enums';
 
 const COLLAPSE_BTN_STYLES = {
   width: '100%',

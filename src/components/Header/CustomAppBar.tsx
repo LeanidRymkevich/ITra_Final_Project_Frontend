@@ -1,7 +1,10 @@
+import { FC } from 'react';
+
 import { AppBar, Container, Toolbar } from '@mui/material';
+
 import ElevationScroll from './ElevationScroll';
 import ScrollTop from '../UI/ScrollTop';
-import { FC } from 'react';
+
 import { ChildrenOnlyProps } from '../../types/interfaces';
 
 export const SCROLL_ELEM_ID = 'scroll-to-top-anchor';
