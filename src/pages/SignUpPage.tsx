@@ -18,6 +18,7 @@ import CustomEmailField from '../components/UI/AuthFormFields/CustomEmailField';
 import CustomFormButton from '../components/UI/AuthFormFields/CustomFormButton';
 import CustomPasswordField from '../components/UI/AuthFormFields/CustomPasswordField';
 import CustomUserNameField from '../components/UI/AuthFormFields/CustomUserNameField';
+import PageTitle from '../components/PageTitle';
 
 import { useAppDispatch } from '../hooks/reduxHooks';
 import { setState } from '../redux/AuthSlice/AuthSlice';
@@ -67,21 +68,7 @@ const SignUpPage = () => {
     <Container maxWidth="sm">
       <Stack sx={{ alignItems: 'center', gap: 1 }}>
         <LockPersonIcon fontSize="large" color="primary" />
-        <Typography
-          align="center"
-          sx={(theme) => ({
-            marginBottom: 1,
-            [theme.breakpoints.down('sm')]: {
-              fontSize: 28,
-            },
-            [theme.breakpoints.up('sm')]: {
-              fontSize: 36,
-            },
-          })}
-          variant="h2"
-        >
-          {t('header:SignUp')}
-        </Typography>
+        <PageTitle>{t('header:SignUp')}</PageTitle>
         <Typography align="center" sx={{ marginBottom: 1 }} variant="body1">
           {t('auth:SignUpWelcomeMsg')}
         </Typography>

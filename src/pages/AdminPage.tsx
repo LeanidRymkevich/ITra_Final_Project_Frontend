@@ -1,9 +1,14 @@
+import { useTranslation } from 'react-i18next';
+
 import Container from '@mui/material/Container';
+import PageTitle from '../components/PageTitle';
 
 const AdminPage = () => {
+  const { t } = useTranslation();
+
   return (
     <Container maxWidth="xl">
-      <h1>Admin's Page</h1>
+      <PageTitle>{t('header:AdminPage')}</PageTitle>
     </Container>
   );
 };

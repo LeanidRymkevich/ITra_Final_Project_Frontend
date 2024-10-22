@@ -4,7 +4,7 @@ import { FieldValues, UseFormRegister } from 'react-hook-form';
 import { USER_ROLES, USER_STATUS } from './enums';
 
 interface ChildrenOnlyProps {
-  children: ReactElement[];
+  children: (ReactElement | string)[] | (ReactElement | string);
 }
 
 interface NavigationBarProps {

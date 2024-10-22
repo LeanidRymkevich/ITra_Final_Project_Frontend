@@ -17,6 +17,7 @@ import LockPersonIcon from '@mui/icons-material/LockPerson';
 import CustomEmailField from '../components/UI/AuthFormFields/CustomEmailField';
 import CustomPasswordField from '../components/UI/AuthFormFields/CustomPasswordField';
 import CustomFormButton from '../components/UI/AuthFormFields/CustomFormButton';
+import PageTitle from '../components/PageTitle';
 
 import signInSchema, { signInFormData } from '../yup_schemes/signInSchema';
 
@@ -63,21 +64,7 @@ const SignInPage = () => {
     <Container maxWidth="sm">
       <Stack sx={{ alignItems: 'center', gap: 1 }}>
         <LockPersonIcon fontSize="large" color="primary" />
-        <Typography
-          align="center"
-          sx={(theme) => ({
-            marginBottom: 1,
-            [theme.breakpoints.down('sm')]: {
-              fontSize: 28,
-            },
-            [theme.breakpoints.up('sm')]: {
-              fontSize: 36,
-            },
-          })}
-          variant="h2"
-        >
-          {t('header:SignIn')}
-        </Typography>
+        <PageTitle>{t('header:SignIn')}</PageTitle>
         <Typography align="center" sx={{ marginBottom: 1 }} variant="body1">
           {t('auth:SignInWelcomeMsg')}
         </Typography>
