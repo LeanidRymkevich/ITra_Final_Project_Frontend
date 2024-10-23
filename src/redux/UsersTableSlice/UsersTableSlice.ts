@@ -5,6 +5,7 @@ import { RootState } from '../store';
 import { User, UsersTableState } from '../../types/interfaces';
 import { REDUX_REDUCERS } from '../../types/enums';
 import { Order } from '../../types/types';
+import userTableService from '../../services/UserTableService';
 
 export const DEFAULT_USERS_TABLE_VARS: UsersTableState = {
   limit: 5,
@@ -14,8 +15,9 @@ export const DEFAULT_USERS_TABLE_VARS: UsersTableState = {
   order: 'asc',
   orderBy: 'username',
   selectedUserIds: [],
-  users: {},
+  users: [],
   error: '',
+  code: 0,
 };
 
 const initialState = DEFAULT_USERS_TABLE_VARS;
@@ -33,45 +35,90 @@ const UsersTableSlice = createSlice({
     setPage(state, { payload }: PayloadAction<number>) {
       state.page = payload;
     },
-    setTotal(state, { payload }: PayloadAction<number>) {
-      state.total = payload;
-    },
-    setIsLoading(state, { payload }: PayloadAction<boolean>) {
-      state.isLoading = payload;
-    },
     setOrder(state, { payload }: PayloadAction<Order>) {
       state.order = payload;
     },
     setOrderBy(state, { payload }: PayloadAction<keyof User>) {
       state.orderBy = payload;
     },
-    setUsers(state, { payload }: PayloadAction<User[]>) {
-      state.users = payload.reduce(
-        (
-          acc: Record<User['id'], Omit<User, 'id'>>,
-          user: User
-        ): Record<User['id'], Omit<User, 'id'>> => {
-          const { id, ...data } = user;
-          return {
-            ...acc,
-            [id]: data,
-          };
-        },
-        {}
+  },
+  extraReducers: (builder) => {
+    builder
+      .addMatcher(userTableService.endpoints.getUsers.matchPending, (state) => {
+        state.isLoading = true;
+      })
+      .addMatcher(
+        userTableService.endpoints.getUsers.matchFulfilled,
+        (state, { payload }) => {
+          state.isLoading = false;
+          state.total = payload.data.total;
+          state.users = payload.data.users;
+        }
+      )
+      .addMatcher(
+        userTableService.endpoints.getUsers.matchRejected,
+        (state, { payload }) => {
+          state.isLoading = false;
+          state.code =
+            typeof payload?.status === 'number' ? payload?.status : 0;
+          state.error = (payload?.data as { error: string }).error;
+        }
+      )
+      .addMatcher(
+        userTableService.endpoints.updateUser.matchPending,
+        (state) => {
+          state.isLoading = true;
+        }
+      )
+      .addMatcher(
+        userTableService.endpoints.updateUser.matchFulfilled,
+        (state, { payload }) => {
+          const { id } = payload.data;
+          state.isLoading = false;
+          state.users = [
+            ...state.users.filter((user) => user.id !== id),
+            payload.data,
+          ];
+        }
+      )
+      .addMatcher(
+        userTableService.endpoints.updateUser.matchRejected,
+        (state, { payload }) => {
+          state.isLoading = false;
+          state.code =
+            typeof payload?.status === 'number' ? payload?.status : 0;
+          state.error = (payload?.data as { error: string }).error;
+        }
+      )
+      .addMatcher(
+        userTableService.endpoints.deleteUser.matchPending,
+        (state) => {
+          state.isLoading = true;
+        }
+      )
+      .addMatcher(
+        userTableService.endpoints.deleteUser.matchFulfilled,
+        (state, { payload }) => {
+          state.isLoading = false;
+          state.users = state.users.filter(
+            (user) => user.id !== payload.data.id
+          );
+        }
+      )
+      .addMatcher(
+        userTableService.endpoints.deleteUser.matchRejected,
+        (state, { payload }) => {
+          state.isLoading = false;
+          state.code =
+            typeof payload?.status === 'number' ? payload?.status : 0;
+          state.error = (payload?.data as { error: string }).error;
+        }
       );
-    },
   },
 });
 
-export const {
-  setLimit,
-  setPage,
-  setTotal,
-  setIsLoading,
-  setOrder,
-  setOrderBy,
-  setUsers,
-} = UsersTableSlice.actions;
+export const { setLimit, setPage, setOrder, setOrderBy } =
+  UsersTableSlice.actions;
 
 export const selectError = (state: RootState): string =>
   state[REDUX_REDUCERS.USERS_TABLE].error;
@@ -88,11 +135,6 @@ export const selectOrder = (state: RootState): Order =>
 export const selectOrderBy = (state: RootState): keyof User =>
   state[REDUX_REDUCERS.USERS_TABLE].orderBy;
 export const selectUsers = (state: RootState): User[] =>
-  Object.entries(state.users_table.users).map(([id, data]): User => {
-    return {
-      id: +id,
-      ...data,
-    };
-  });
+  state[REDUX_REDUCERS.USERS_TABLE].users;
 
 export default UsersTableSlice.reducer;

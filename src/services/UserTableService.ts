@@ -1,5 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { GetUsersRequest, GetUsersResponse } from '../types/interfaces';
+import {
+  DeleteUserResponse,
+  GetUsersRequest,
+  GetUsersResponse,
+  UpdateUserResponse,
+  User,
+} from '../types/interfaces';
 import { SERVER_URL } from '../constants/constants';
 import { ENDPOINTS, SERVICES_NAMES } from '../types/enums';
 import HTTPMethod from 'http-method-enum';
@@ -30,8 +36,28 @@ const userTableService = createApi({
         },
       }),
     }),
+    updateUser: builder.mutation<UpdateUserResponse, User>({
+      query: ({ id, ...data }) => ({
+        url: `${ENDPOINTS.ADMIN}/${id}`,
+        method: HTTPMethod.PATCH,
+        body: {
+          id,
+          ...data,
+        },
+      }),
+    }),
+    deleteUser: builder.mutation<DeleteUserResponse, string>({
+      query: (id) => ({
+        url: `${ENDPOINTS.ADMIN}/${id}`,
+        method: HTTPMethod.DELETE,
+      }),
+    }),
   }),
 });
 
-export const { useGetUsersQuery } = userTableService;
+export const {
+  useGetUsersQuery,
+  useUpdateUserMutation,
+  useDeleteUserMutation,
+} = userTableService;
 export default userTableService;

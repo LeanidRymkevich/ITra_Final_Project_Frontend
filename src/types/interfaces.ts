@@ -111,8 +111,14 @@ interface UsersTableState {
   order: Order;
   orderBy: keyof User;
   selectedUserIds: User['id'][];
-  users: Record<User['id'], Omit<User, 'id'>>;
+  users: User[];
   error: string;
+  code: number;
+}
+
+interface GetUsersRequest {
+  page: number;
+  limit: number;
 }
 
 interface GetUsersRequest {
@@ -125,6 +131,14 @@ interface GetUsersResponse {
     users: User[];
     total: number;
   };
+}
+
+interface UpdateUserResponse {
+  data: User;
+}
+
+interface DeleteUserResponse {
+  data: { id: number };
 }
 
 export type {
@@ -147,4 +161,6 @@ export type {
   UsersTableState,
   GetUsersRequest,
   GetUsersResponse,
+  UpdateUserResponse,
+  DeleteUserResponse,
 };
