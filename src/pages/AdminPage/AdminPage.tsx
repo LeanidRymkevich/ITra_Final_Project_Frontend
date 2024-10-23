@@ -6,7 +6,7 @@ import Container from '@mui/material/Container';
 
 import PageTitle from '../../components/PageTitle';
 import AdminsToolsBar from '../../components/AdminToolsBar';
-import EnhancedTable from '../../components/Table/EnhancedTable';
+import EnhancedTable from '../../components/UsersTable/EnhancedTable';
 import { rows } from './testData';
 import { headCells } from './headCellsProps';
 

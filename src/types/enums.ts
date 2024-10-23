@@ -33,6 +33,7 @@ enum LANGUAGES {
 
 enum REDUX_REDUCERS {
   AUTH = 'auth',
+  USERS_TABLE = 'users_table',
 }
 
 enum ENDPOINTS {

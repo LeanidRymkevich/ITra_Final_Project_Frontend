@@ -3,10 +3,12 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { REDUX_REDUCERS } from '../types/enums';
 
 import AuthSlice from './AuthSlice/AuthSlice';
+import UsersTableSlice from './UsersTableSlice/UsersTableSlice';
 import authService from '../services/AuthService';
 
 const rootReducer = combineReducers({
   [REDUX_REDUCERS.AUTH]: AuthSlice,
+  [REDUX_REDUCERS.USERS_TABLE]: UsersTableSlice,
   [authService.reducerPath]: authService.reducer,
 });
 

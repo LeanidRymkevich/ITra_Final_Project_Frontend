@@ -10,7 +10,7 @@ const initialState: AuthState = {
   ...getAuthStateFromLS(),
 };
 
-export const AuthSlice = createSlice({
+const AuthSlice = createSlice({
   name: REDUX_REDUCERS.AUTH,
   initialState,
   reducers: {

@@ -103,6 +103,17 @@ interface EnhancedTableProps<T extends { id: number }> {
   headCells: readonly EnhancedTableHeadCell<T>[];
 }
 
+interface UsersTableState {
+  limit: number;
+  page: number;
+  total: number;
+  isLoading: boolean;
+  order: Order;
+  orderBy: keyof User;
+  selectedUserIds: User['id'][];
+  users: Record<User['id'], Omit<User, 'id'>>;
+}
+
 export type {
   ChildrenOnlyProps,
   NavigationBarProps,
@@ -120,4 +131,5 @@ export type {
   EnhancedTableHeadProps,
   EnhancedTableToolbarProps,
   EnhancedTableProps,
+  UsersTableState,
 };
