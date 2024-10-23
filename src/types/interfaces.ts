@@ -45,7 +45,7 @@ interface AuthState {
 }
 
 interface User {
-  id: string;
+  id: number;
   username: string;
   email: string;
   status: USER_STATUS;
@@ -73,14 +73,14 @@ interface ServerResponseError {
   status: number;
 }
 
-interface EnhancedTableHeadCell<T extends { id: string }> {
+interface EnhancedTableHeadCell<T extends { id: number }> {
   disablePadding: boolean;
   id: keyof T;
   label: string;
   numeric: boolean;
 }
 
-interface EnhancedTableHeadProps<T extends { id: string }> {
+interface EnhancedTableHeadProps<T extends { id: number }> {
   numSelected: number;
   onRequestSort: (event: React.MouseEvent<unknown>, property: keyof T) => void;
   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -96,7 +96,7 @@ interface EnhancedTableToolbarProps {
   buttonsBar: JSX.Element;
 }
 
-interface EnhancedTableProps<T extends { id: string }> {
+interface EnhancedTableProps<T extends { id: number }> {
   rows: T[];
   tableName: string;
   buttonsBar: JSX.Element;

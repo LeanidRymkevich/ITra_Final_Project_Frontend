@@ -3,7 +3,7 @@ import { EnhancedTableHeadCell, User } from '../../types/interfaces';
 export const headCells: readonly EnhancedTableHeadCell<User>[] = [
   {
     id: 'id',
-    numeric: false,
+    numeric: true,
     disablePadding: true,
     label: 'id',
   },

@@ -9,7 +9,7 @@ import {
 import { EnhancedTableHeadProps } from '../../types/interfaces';
 import { visuallyHidden } from '@mui/utils';
 
-function EnhancedTableHead<T extends { id: string }>({
+function EnhancedTableHead<T extends { id: number }>({
   onSelectAllClick,
   order,
   orderBy,
@@ -40,7 +40,7 @@ function EnhancedTableHead<T extends { id: string }>({
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id as string}
-            align={headCell.numeric ? 'right' : 'left'}
+            align={'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
           >

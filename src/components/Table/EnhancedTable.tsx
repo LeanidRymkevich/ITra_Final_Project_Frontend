@@ -16,7 +16,7 @@ import EnhancedTableToolbar from './EnhancedTableToolbar';
 import { EnhancedTableProps } from '../../types/interfaces';
 import { ReactNode, useState } from 'react';
 
-function EnhancedTable<T extends { id: string }>({
+function EnhancedTable<T extends { id: number }>({
   rows,
   tableName,
   buttonsBar,
@@ -39,7 +39,7 @@ function EnhancedTable<T extends { id: string }>({
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelected = rows.map((n) => +n.id);
+      const newSelected = rows.map((n) => n.id);
       setSelected(newSelected);
       return;
     }
@@ -96,11 +96,7 @@ function EnhancedTable<T extends { id: string }>({
           numSelected={selected.length}
         />
         <TableContainer>
-          <Table
-            sx={{ minWidth: 750 }}
-            aria-labelledby="tableTitle"
-            size="medium"
-          >
+          <Table sx={{ minWidth: 750 }} size="medium">
             <EnhancedTableHead
               headCells={headCells}
               numSelected={selected.length}
@@ -112,13 +108,13 @@ function EnhancedTable<T extends { id: string }>({
             />
             <TableBody>
               {visibleRows.map((row, index) => {
-                const isItemSelected = selected.includes(+row.id);
+                const isItemSelected = selected.includes(row.id);
                 const labelId = `enhanced-table-checkbox-${index}`;
 
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => handleClick(event, +row.id)}
+                    onClick={(event) => handleClick(event, row.id)}
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
@@ -150,7 +146,7 @@ function EnhancedTable<T extends { id: string }>({
                         );
                       } else {
                         return (
-                          <TableCell align="right" key={headCell.id as string}>
+                          <TableCell align="left" key={headCell.id as string}>
                             {row[headCell.id] as ReactNode}
                           </TableCell>
                         );

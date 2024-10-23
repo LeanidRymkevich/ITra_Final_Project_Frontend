@@ -13,7 +13,6 @@ const AdminsToolsBar: FC = () => {
       sx={{
         display: 'flex',
         gap: 1,
-        flexWrap: 'wrap',
       }}
     >
       <Tooltip title="Block">
