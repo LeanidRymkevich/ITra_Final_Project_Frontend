@@ -24,13 +24,6 @@ export const rows: User[] = [
     role: USER_ROLES.ADMIN,
   },
   {
-    id: '3',
-    username: 'Mark Antonii',
-    email: 'markantonii@gmail.com',
-    status: USER_STATUS.ACTIVE,
-    role: USER_ROLES.ADMIN,
-  },
-  {
     id: '4',
     username: 'Mark Antonii',
     email: 'markantonii@gmail.com',
@@ -107,7 +100,6 @@ export const rows: User[] = [
     status: USER_STATUS.ACTIVE,
     role: USER_ROLES.ADMIN,
   },
-
   {
     id: '15',
     username: 'Mark Antonii',
@@ -115,6 +107,7 @@ export const rows: User[] = [
     status: USER_STATUS.ACTIVE,
     role: USER_ROLES.ADMIN,
   },
+
   {
     id: '16',
     username: 'Mark Antonii',
@@ -136,7 +129,6 @@ export const rows: User[] = [
     status: USER_STATUS.ACTIVE,
     role: USER_ROLES.ADMIN,
   },
-
   {
     id: '19',
     username: 'Mark Antonii',
@@ -144,6 +136,7 @@ export const rows: User[] = [
     status: USER_STATUS.ACTIVE,
     role: USER_ROLES.ADMIN,
   },
+
   {
     id: '20',
     username: 'Mark Antonii',
@@ -165,7 +158,6 @@ export const rows: User[] = [
     status: USER_STATUS.ACTIVE,
     role: USER_ROLES.ADMIN,
   },
-
   {
     id: '23',
     username: 'Mark Antonii',
@@ -173,6 +165,7 @@ export const rows: User[] = [
     status: USER_STATUS.ACTIVE,
     role: USER_ROLES.ADMIN,
   },
+
   {
     id: '24',
     username: 'Mark Antonii',
@@ -250,7 +243,6 @@ export const rows: User[] = [
     status: USER_STATUS.ACTIVE,
     role: USER_ROLES.ADMIN,
   },
-
   {
     id: '35',
     username: 'Mark Antonii',
@@ -258,6 +250,7 @@ export const rows: User[] = [
     status: USER_STATUS.ACTIVE,
     role: USER_ROLES.ADMIN,
   },
+
   {
     id: '36',
     username: 'Mark Antonii',
@@ -300,7 +293,6 @@ export const rows: User[] = [
     status: USER_STATUS.ACTIVE,
     role: USER_ROLES.ADMIN,
   },
-
   {
     id: '42',
     username: 'Mark Antonii',
@@ -308,6 +300,7 @@ export const rows: User[] = [
     status: USER_STATUS.ACTIVE,
     role: USER_ROLES.ADMIN,
   },
+
   {
     id: '43',
     username: 'Mark Antonii',
@@ -359,6 +352,13 @@ export const rows: User[] = [
   },
   {
     id: '50',
+    username: 'Mark Antonii',
+    email: 'markantonii@gmail.com',
+    status: USER_STATUS.ACTIVE,
+    role: USER_ROLES.ADMIN,
+  },
+  {
+    id: '51',
     username: 'Mark Antonii',
     email: 'markantonii@gmail.com',
     status: USER_STATUS.ACTIVE,
