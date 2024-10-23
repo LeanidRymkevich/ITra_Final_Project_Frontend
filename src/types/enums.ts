@@ -50,6 +50,7 @@ enum AUTH_ENDPOINTS {
 
 enum SERVICES_NAMES {
   AUTH = 'authService',
+  USERS_TABLE = 'users_table_service',
 }
 
 export {

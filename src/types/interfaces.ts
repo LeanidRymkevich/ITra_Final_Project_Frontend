@@ -114,6 +114,15 @@ interface UsersTableState {
   users: Record<User['id'], Omit<User, 'id'>>;
 }
 
+interface GetUsersRequest {
+  offset: number;
+  limit: number;
+}
+
+interface GetUsersResponse {
+  data: User[];
+}
+
 export type {
   ChildrenOnlyProps,
   NavigationBarProps,
@@ -132,4 +141,6 @@ export type {
   EnhancedTableToolbarProps,
   EnhancedTableProps,
   UsersTableState,
+  GetUsersRequest,
+  GetUsersResponse,
 };
