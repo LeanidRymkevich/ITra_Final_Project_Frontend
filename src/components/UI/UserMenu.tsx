@@ -1,6 +1,7 @@
 import { FC, useState, MouseEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import { Button, IconButton, Typography } from '@mui/material';
 import Menu from '@mui/material/Menu';
@@ -12,6 +13,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { resetState, selectUsername } from '../../redux/AuthSlice/AuthSlice';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { resetAuthStateInLS } from '../../utils/localStorageUtils';
+
+import { PATHS } from '../../types/enums';
 
 const noBgOnHover = [
   () => ({
@@ -27,8 +30,12 @@ const noBgOnHover = [
 
 const UserMenu: FC = () => {
   const { t } = useTranslation();
+
   const dispatch = useAppDispatch();
   const username: string | null = useSelector(selectUsername);
+
+  const navigate = useNavigate();
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const open = Boolean(anchorEl);
@@ -45,6 +52,7 @@ const UserMenu: FC = () => {
     resetAuthStateInLS();
     dispatch(resetState());
     handleClose();
+    navigate(PATHS.SIGN_IN);
   };
 
   return (

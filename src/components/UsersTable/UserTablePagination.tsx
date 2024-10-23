@@ -10,6 +10,8 @@ import {
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
+const PAGINATION_STEPS = [5, 10, 20];
+
 const UserTablePagination = () => {
   const { t } = useTranslation();
 
@@ -29,7 +31,7 @@ const UserTablePagination = () => {
 
   return (
     <TablePagination
-      rowsPerPageOptions={[5, 10, 25]}
+      rowsPerPageOptions={PAGINATION_STEPS}
       component="div"
       count={total}
       rowsPerPage={limit}

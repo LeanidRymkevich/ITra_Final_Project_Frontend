@@ -91,11 +91,6 @@ interface GetUsersRequest {
   limit: number;
 }
 
-interface GetUsersRequest {
-  page: number;
-  limit: number;
-}
-
 interface GetUsersResponse {
   data: {
     users: User[];
