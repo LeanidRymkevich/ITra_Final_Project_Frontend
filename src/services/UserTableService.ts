@@ -5,7 +5,9 @@ import { ENDPOINTS, SERVICES_NAMES } from '../types/enums';
 import HTTPMethod from 'http-method-enum';
 import { RootState } from '../redux/store';
 
-const UserTableService = createApi({
+const getOffset = (limit: number, page: number): number => limit * (page - 1);
+
+const userTableService = createApi({
   reducerPath: SERVICES_NAMES.USERS_TABLE,
   baseQuery: fetchBaseQuery({
     baseUrl: SERVER_URL,
@@ -19,14 +21,17 @@ const UserTableService = createApi({
   }),
   endpoints: (builder) => ({
     getUsers: builder.query<GetUsersResponse, GetUsersRequest>({
-      query: (data) => ({
+      query: ({ limit, page }) => ({
         url: ENDPOINTS.ADMIN,
         method: HTTPMethod.GET,
-        body: data,
+        params: {
+          limit,
+          offset: getOffset(limit, page),
+        },
       }),
     }),
   }),
 });
 
-export const { useGetUsersQuery } = UserTableService;
-export default UserTableService;
+export const { useGetUsersQuery } = userTableService;
+export default userTableService;

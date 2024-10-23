@@ -112,15 +112,19 @@ interface UsersTableState {
   orderBy: keyof User;
   selectedUserIds: User['id'][];
   users: Record<User['id'], Omit<User, 'id'>>;
+  error: string;
 }
 
 interface GetUsersRequest {
-  offset: number;
+  page: number;
   limit: number;
 }
 
 interface GetUsersResponse {
-  data: User[];
+  data: {
+    users: User[];
+    total: number;
+  };
 }
 
 export type {

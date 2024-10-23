@@ -15,6 +15,7 @@ export const DEFAULT_USERS_TABLE_VARS: UsersTableState = {
   orderBy: 'username',
   selectedUserIds: [],
   users: {},
+  error: '',
 };
 
 const initialState = DEFAULT_USERS_TABLE_VARS;
@@ -23,6 +24,9 @@ const UsersTableSlice = createSlice({
   name: REDUX_REDUCERS.USERS_TABLE,
   initialState,
   reducers: {
+    setError(state, { payload }: PayloadAction<string>) {
+      state.error = payload;
+    },
     setLimit(state, { payload }: PayloadAction<number>) {
       state.limit = payload;
     },
@@ -69,6 +73,8 @@ export const {
   setUsers,
 } = UsersTableSlice.actions;
 
+export const selectError = (state: RootState): string =>
+  state[REDUX_REDUCERS.USERS_TABLE].error;
 export const selectLimit = (state: RootState): number =>
   state[REDUX_REDUCERS.USERS_TABLE].limit;
 export const selectPage = (state: RootState): number =>
