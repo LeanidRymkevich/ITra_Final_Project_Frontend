@@ -73,13 +73,6 @@ interface ServerResponseError {
   status: number;
 }
 
-interface UsersTableHeadCell {
-  disablePadding: boolean;
-  id: keyof User;
-  label: string;
-  numeric: boolean;
-}
-
 interface UsersTableState {
   limit: number;
   page: number;
@@ -131,7 +124,6 @@ export type {
   SignInRequest,
   SignUpRequest,
   ServerResponseError,
-  UsersTableHeadCell,
   UsersTableState,
   GetUsersRequest,
   GetUsersResponse,

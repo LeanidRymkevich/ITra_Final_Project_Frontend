@@ -27,8 +27,11 @@ import {
 import { User } from '../../types/interfaces';
 import { useGetUsersQuery } from '../../services/UserTableService';
 import UserTablePagination from './UserTablePagination';
+import { useTranslation } from 'react-i18next';
 
 const UsersTable: FC = () => {
+  const { t } = useTranslation();
+
   const dispatch = useAppDispatch();
   const rows: User[] = useSelector(selectUsers);
   const order: Order = useSelector(selectOrder);
@@ -62,12 +65,9 @@ const UsersTable: FC = () => {
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * limit - rows.length) : 0;
 
-  const visibleRows = React.useMemo(
-    () =>
-      [...rows]
-        .sort(getComparator(order, orderBy as never))
-        .slice(page * limit, page * limit + limit),
-    [order, orderBy, page, limit, rows]
+  const sortedRows = React.useMemo(
+    () => [...rows].sort(getComparator(order, orderBy as never)),
+    [order, orderBy, rows]
   );
 
   return (
@@ -86,7 +86,7 @@ const UsersTable: FC = () => {
           <Table size="medium">
             <UsersTableHead />
             <TableBody>
-              {visibleRows.map((row, index) => {
+              {sortedRows.map((row, index) => {
                 const isItemSelected = selected.includes(row.id);
                 const labelId = `enhanced-table-checkbox-${index}`;
 
@@ -108,8 +108,12 @@ const UsersTable: FC = () => {
                       {row.username}
                     </TableCell>
                     <TableCell align="left">{row.email}</TableCell>
-                    <TableCell align="left">{row.status}</TableCell>
-                    <TableCell align="left">{row.role}</TableCell>
+                    <TableCell align="left">
+                      {t(`adminPage:${row.status}`)}
+                    </TableCell>
+                    <TableCell align="left">
+                      {t(`adminPage:${row.role}`)}
+                    </TableCell>
                   </TableRow>
                 );
               })}

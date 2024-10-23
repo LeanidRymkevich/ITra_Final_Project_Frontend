@@ -8,8 +8,11 @@ import {
   selectTotal,
 } from '../../redux/UsersTableSlice/UsersTableSlice';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 const UserTablePagination = () => {
+  const { t } = useTranslation();
+
   const dispatch = useAppDispatch();
   const page = useSelector(selectPage);
   const limit = useSelector(selectLimit);
@@ -33,6 +36,7 @@ const UserTablePagination = () => {
       page={page}
       onPageChange={handleChangePage}
       onRowsPerPageChange={handleChangeLimit}
+      labelRowsPerPage={t('adminPage:RowsPerPage')}
     />
   );
 };

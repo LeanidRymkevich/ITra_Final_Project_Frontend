@@ -2,7 +2,7 @@ import { Route } from 'react-router-dom';
 
 import { PATHS } from '../types/enums';
 
-import AdminPage from '../pages/AdminPage/AdminPage';
+import AdminPage from '../pages/AdminPage';
 import userPageRoutes from './pageRoutes/userPageRoutes';
 import templatePageRoutes from './pageRoutes/templatePageRoutes';
 

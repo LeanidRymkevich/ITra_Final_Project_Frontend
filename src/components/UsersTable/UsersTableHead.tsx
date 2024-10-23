@@ -4,12 +4,9 @@ import {
   TableCell,
   Checkbox,
   TableSortLabel,
-  Box,
 } from '@mui/material';
 import { User } from '../../types/interfaces';
-import { visuallyHidden } from '@mui/utils';
 import { useSelector } from 'react-redux';
-import { headCells } from '../../pages/AdminPage/headCellsProps';
 import {
   selectUsers,
   selectOrder,
@@ -22,6 +19,8 @@ import {
 import { Order } from '../../types/types';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { useTranslation } from 'react-i18next';
+
+const ids: (keyof User)[] = ['username', 'email', 'role', 'status'];
 
 const UsersTableHead = () => {
   const { t } = useTranslation();
@@ -60,19 +59,19 @@ const UsersTableHead = () => {
             onChange={onSelectAllClick}
           />
         </TableCell>
-        {headCells.map((headCell) => (
+        {ids.map((id) => (
           <TableCell
-            key={headCell.id}
+            key={id}
             align="left"
             padding="normal"
-            sortDirection={orderBy === headCell.id ? order : false}
+            sortDirection={orderBy === id ? order : false}
           >
             <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
+              active={orderBy === id}
+              direction={orderBy === id ? order : 'asc'}
+              onClick={createSortHandler(id)}
             >
-              {headCell.label}
+              {t(`adminPage:${id}`)}
             </TableSortLabel>
           </TableCell>
         ))}
