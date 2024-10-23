@@ -9,12 +9,12 @@ import userTableService from '../../services/UserTableService';
 
 export const DEFAULT_USERS_TABLE_VARS: UsersTableState = {
   limit: 5,
-  page: 1,
+  page: 0,
   total: 0,
   isLoading: false,
   order: 'asc',
   orderBy: 'username',
-  selectedUserIds: [],
+  selected: [],
   users: [],
   error: '',
   code: 0,
@@ -40,6 +40,9 @@ const UsersTableSlice = createSlice({
     },
     setOrderBy(state, { payload }: PayloadAction<keyof User>) {
       state.orderBy = payload;
+    },
+    setSelected(state, { payload }: PayloadAction<User['id'][]>) {
+      state.selected = payload;
     },
   },
   extraReducers: (builder) => {
@@ -117,8 +120,14 @@ const UsersTableSlice = createSlice({
   },
 });
 
-export const { setLimit, setPage, setOrder, setOrderBy } =
-  UsersTableSlice.actions;
+export const {
+  setLimit,
+  setPage,
+  setOrder,
+  setOrderBy,
+  setSelected,
+  setError,
+} = UsersTableSlice.actions;
 
 export const selectError = (state: RootState): string =>
   state[REDUX_REDUCERS.USERS_TABLE].error;
@@ -136,5 +145,7 @@ export const selectOrderBy = (state: RootState): keyof User =>
   state[REDUX_REDUCERS.USERS_TABLE].orderBy;
 export const selectUsers = (state: RootState): User[] =>
   state[REDUX_REDUCERS.USERS_TABLE].users;
+export const selectSelectedUserIds = (state: RootState): number[] =>
+  state[REDUX_REDUCERS.USERS_TABLE].selected;
 
 export default UsersTableSlice.reducer;

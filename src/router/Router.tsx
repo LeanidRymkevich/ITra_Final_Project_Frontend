@@ -2,7 +2,9 @@ import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import { StatusCodes } from 'http-status-codes';
 import { PATHS, USER_ROLES } from '../types/enums';
+import { ServerResponseError } from '../types/interfaces';
 
 import Layout from '../components/Layout';
 import NotFoundPage from '../pages/NotFoundPage';
@@ -33,9 +35,14 @@ const Router = () => {
       if (!token) return;
       try {
         await checkToken({}).unwrap();
-      } catch {
-        dispatch(resetState());
-        resetAuthStateInLS();
+      } catch (error) {
+        const { status } = error as ServerResponseError;
+        if (status === StatusCodes.UNAUTHORIZED) {
+          dispatch(resetState());
+          resetAuthStateInLS();
+          return;
+        }
+        throw error;
       }
     };
 

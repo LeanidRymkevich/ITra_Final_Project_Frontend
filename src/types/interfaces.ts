@@ -73,34 +73,11 @@ interface ServerResponseError {
   status: number;
 }
 
-interface EnhancedTableHeadCell<T extends { id: number }> {
+interface UsersTableHeadCell {
   disablePadding: boolean;
-  id: keyof T;
+  id: keyof User;
   label: string;
   numeric: boolean;
-}
-
-interface EnhancedTableHeadProps<T extends { id: number }> {
-  numSelected: number;
-  onRequestSort: (event: React.MouseEvent<unknown>, property: keyof T) => void;
-  onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  order: Order;
-  orderBy: string;
-  rowCount: number;
-  headCells: readonly EnhancedTableHeadCell<T>[];
-}
-
-interface EnhancedTableToolbarProps {
-  numSelected: number;
-  tableName: string;
-  buttonsBar: JSX.Element;
-}
-
-interface EnhancedTableProps<T extends { id: number }> {
-  rows: T[];
-  tableName: string;
-  buttonsBar: JSX.Element;
-  headCells: readonly EnhancedTableHeadCell<T>[];
 }
 
 interface UsersTableState {
@@ -110,7 +87,7 @@ interface UsersTableState {
   isLoading: boolean;
   order: Order;
   orderBy: keyof User;
-  selectedUserIds: User['id'][];
+  selected: User['id'][];
   users: User[];
   error: string;
   code: number;
@@ -154,10 +131,7 @@ export type {
   SignInRequest,
   SignUpRequest,
   ServerResponseError,
-  EnhancedTableHeadCell,
-  EnhancedTableHeadProps,
-  EnhancedTableToolbarProps,
-  EnhancedTableProps,
+  UsersTableHeadCell,
   UsersTableState,
   GetUsersRequest,
   GetUsersResponse,

@@ -11,7 +11,7 @@ import { ENDPOINTS, SERVICES_NAMES } from '../types/enums';
 import HTTPMethod from 'http-method-enum';
 import { RootState } from '../redux/store';
 
-const getOffset = (limit: number, page: number): number => limit * (page - 1);
+const getOffset = (limit: number, page: number): number => limit * page;
 
 const userTableService = createApi({
   reducerPath: SERVICES_NAMES.USERS_TABLE,

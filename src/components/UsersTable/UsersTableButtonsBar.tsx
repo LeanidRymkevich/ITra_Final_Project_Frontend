@@ -7,7 +7,7 @@ import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import PersonAddDisabledIcon from '@mui/icons-material/PersonAddDisabled';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const AdminsToolsBar: FC = () => {
+const UsersTableButtonsBar: FC = () => {
   return (
     <Box
       sx={{
@@ -48,4 +48,4 @@ const AdminsToolsBar: FC = () => {
   );
 };
 
-export default AdminsToolsBar;
+export default UsersTableButtonsBar;

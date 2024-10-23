@@ -1,12 +1,12 @@
-import { EnhancedTableHeadCell, User } from '../../types/interfaces';
+import { UsersTableHeadCell } from '../../types/interfaces';
 
-export const headCells: readonly EnhancedTableHeadCell<User>[] = [
-  {
-    id: 'id',
-    numeric: true,
-    disablePadding: true,
-    label: 'id',
-  },
+export const headCells: readonly UsersTableHeadCell[] = [
+  // {
+  //   id: 'id',
+  //   numeric: true,
+  //   disablePadding: true,
+  //   label: 'id',
+  // },
   {
     id: 'username',
     numeric: false,
