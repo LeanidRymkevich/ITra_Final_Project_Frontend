@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Alert, Backdrop, CircularProgress, Stack } from '@mui/material';
@@ -24,9 +24,12 @@ const AdminPage: FC = () => {
   const { msg, code } = useSelector(selectError);
   const isLoading = useSelector(selectIsLoading);
 
-  if (code === StatusCodes.UNAUTHORIZED) {
-    signOutWithError(msg);
-  }
+  useEffect(() => {
+    if (code === StatusCodes.UNAUTHORIZED) {
+      signOutWithError(msg);
+      dispatch(resetError());
+    }
+  }, [code, dispatch, msg, signOutWithError]);
 
   const onErrorClose = (): void => {
     dispatch(resetError());

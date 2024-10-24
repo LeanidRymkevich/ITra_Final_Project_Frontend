@@ -58,7 +58,7 @@ const UsersTable: FC = () => {
       dispatch(setUsers(data.data.users));
       dispatch(setTotal(data.data.total));
     }
-    console.log(isFetching);
+
     if (error) {
       const { data, status } = error as ServerResponseError;
       dispatch(setError({ msg: data.error, code: status }));
