@@ -8,7 +8,7 @@ import templatePageRoutes from './pageRoutes/templatePageRoutes';
 
 import { getRedirectRoutes } from '../utils/routesUtils';
 
-const redirectPath = PATHS.MAIN_PAGE;
+const redirectPath = PATHS.SIGN_IN;
 const adminForbiddenPaths = [PATHS.SIGN_IN, PATHS.SIGN_UP];
 const userForbiddenPaths = [...adminForbiddenPaths, PATHS.ADMIN_PAGE];
 

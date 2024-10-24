@@ -8,6 +8,7 @@ import { getAuthStateFromLS } from '../../utils/localStorageUtils';
 
 const initialState: AuthState = {
   ...getAuthStateFromLS(),
+  unauthorizedError: '',
 };
 
 const AuthSlice = createSlice({
@@ -24,10 +25,13 @@ const AuthSlice = createSlice({
       state.username = null;
       state.role = null;
     },
+    setUnauthorizedError(state, { payload }: PayloadAction<string>) {
+      state.unauthorizedError = payload;
+    },
   },
 });
 
-export const { setState, resetState } = AuthSlice.actions;
+export const { setState, resetState, setUnauthorizedError } = AuthSlice.actions;
 
 export const selectToken = (state: RootState): string | null =>
   state[REDUX_REDUCERS.AUTH].token;
@@ -35,5 +39,7 @@ export const selectUsername = (state: RootState): string | null =>
   state[REDUX_REDUCERS.AUTH].username;
 export const selectRole = (state: RootState): USER_ROLES | null =>
   state[REDUX_REDUCERS.AUTH].role;
+export const selectUnauthorizedError = (state: RootState): string =>
+  state[REDUX_REDUCERS.AUTH].unauthorizedError;
 
 export default AuthSlice.reducer;

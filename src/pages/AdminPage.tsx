@@ -13,13 +13,20 @@ import {
   selectIsLoading,
 } from '../redux/UsersTableSlice/UsersTableSlice';
 import UsersTable from '../components/UsersTable/UsersTable';
+import { StatusCodes } from 'http-status-codes';
+import useSignOut from '../hooks/useSignOut';
 
 const AdminPage: FC = () => {
   const { t } = useTranslation();
+  const { signOutWithError } = useSignOut();
 
   const dispatch = useAppDispatch();
-  const error = useSelector(selectError).msg;
+  const { msg, code } = useSelector(selectError);
   const isLoading = useSelector(selectIsLoading);
+
+  if (code === StatusCodes.UNAUTHORIZED) {
+    signOutWithError(msg);
+  }
 
   const onErrorClose = (): void => {
     dispatch(resetError());
@@ -40,9 +47,9 @@ const AdminPage: FC = () => {
         alignItems="center"
         gap={1}
       >
-        {error && (
+        {msg && (
           <Alert severity="error" onClose={onErrorClose}>
-            {error}
+            {msg}
           </Alert>
         )}
         <UsersTable />

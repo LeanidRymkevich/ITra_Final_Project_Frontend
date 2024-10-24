@@ -42,6 +42,7 @@ interface AuthState {
   token: string | null;
   username: string | null;
   role: USER_ROLES | null;
+  unauthorizedError: string;
 }
 
 interface User {

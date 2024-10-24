@@ -1,7 +1,6 @@
 import { FC, useState, MouseEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 
 import { Button, IconButton, Typography } from '@mui/material';
 import Menu from '@mui/material/Menu';
@@ -10,11 +9,8 @@ import MenuItem from '@mui/material/MenuItem';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 
-import { resetState, selectUsername } from '../../redux/AuthSlice/AuthSlice';
-import { useAppDispatch } from '../../hooks/reduxHooks';
-import { resetAuthStateInLS } from '../../utils/localStorageUtils';
-
-import { PATHS } from '../../types/enums';
+import { selectUsername } from '../../redux/AuthSlice/AuthSlice';
+import useSignOut from '../../hooks/useSignOut';
 
 const noBgOnHover = [
   () => ({
@@ -30,11 +26,9 @@ const noBgOnHover = [
 
 const UserMenu: FC = () => {
   const { t } = useTranslation();
+  const { signOut } = useSignOut();
 
-  const dispatch = useAppDispatch();
   const username: string | null = useSelector(selectUsername);
-
-  const navigate = useNavigate();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -49,10 +43,8 @@ const UserMenu: FC = () => {
   };
 
   const handleSignOut = (): void => {
-    resetAuthStateInLS();
-    dispatch(resetState());
+    signOut();
     handleClose();
-    navigate(PATHS.SIGN_IN);
   };
 
   return (

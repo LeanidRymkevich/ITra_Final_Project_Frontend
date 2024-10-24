@@ -17,17 +17,20 @@ import {
   resetState,
   selectRole,
   selectToken,
+  selectUnauthorizedError,
 } from '../redux/AuthSlice/AuthSlice';
 import { useAppDispatch } from '../hooks/reduxHooks';
 import { useCheckTokenMutation } from '../services/AuthService';
 
 import { resetAuthStateInLS } from '../utils/localStorageUtils';
+import UnauthorizedBackdrop from '../components/UnauthorizedBackdrop';
 
 const Router = () => {
   const dispatch = useAppDispatch();
   const [checkToken] = useCheckTokenMutation();
   const role: USER_ROLES | null = useSelector(selectRole);
   const token: string | null = useSelector(selectToken);
+  const unauthorizedError = useSelector(selectUnauthorizedError);
 
   // if store has a token check it before building the App
   useEffect(() => {
@@ -63,6 +66,7 @@ const Router = () => {
           <Route path={PATHS.NOT_EXIST} element={<NotFoundPage />} />
         </Route>
       </Routes>
+      {unauthorizedError && <UnauthorizedBackdrop />}
     </BrowserRouter>
   );
 };
