@@ -28,12 +28,14 @@ const userTableService = createApi({
   tagTypes: ['User'],
   endpoints: (builder) => ({
     getUsers: builder.query<GetUsersResponse, GetUsersRequest>({
-      query: ({ limit, page }) => ({
+      query: ({ limit, page, order, orderBy }) => ({
         url: ENDPOINTS.ADMIN,
         method: HTTPMethod.GET,
         params: {
           limit,
           offset: getOffset(limit, page),
+          order: order.toLocaleUpperCase(),
+          orderBy,
         },
       }),
       providesTags: (result) =>

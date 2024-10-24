@@ -91,6 +91,8 @@ interface UsersTableState {
 interface GetUsersRequest {
   page: number;
   limit: number;
+  orderBy: keyof User;
+  order: Order;
 }
 
 interface GetUsersResponse {

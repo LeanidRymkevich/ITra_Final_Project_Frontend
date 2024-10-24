@@ -48,6 +48,8 @@ const UsersTable: FC = () => {
   const { data, isLoading, error } = useGetUsersQuery({
     page,
     limit,
+    order,
+    orderBy,
   });
 
   useEffect(() => {
