@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../hooks/reduxHooks';
 import {
   selectError,
-  setError,
+  resetError,
 } from '../redux/UsersTableSlice/UsersTableSlice';
 import UsersTable from '../components/UsersTable/UsersTable';
 
@@ -17,16 +17,27 @@ const AdminPage: FC = () => {
   const { t } = useTranslation();
 
   const dispatch = useAppDispatch();
-  const error = useSelector(selectError);
+  const error = useSelector(selectError).msg;
 
   const onErrorClose = (): void => {
-    dispatch(setError(''));
+    dispatch(resetError());
   };
 
   return (
     <Container maxWidth="xl">
       <PageTitle>{t('header:AdminPage')}</PageTitle>
-      <Stack alignItems="center">
+      <Stack
+        sx={{
+          width: {
+            lg: '80%',
+            md: '90%',
+            xs: '100%',
+          },
+          margin: '0 auto',
+        }}
+        alignItems="center"
+        gap={1}
+      >
         {error && (
           <Alert severity="error" onClose={onErrorClose}>
             {error}

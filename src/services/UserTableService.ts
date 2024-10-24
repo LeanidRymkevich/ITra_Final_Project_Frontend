@@ -25,6 +25,7 @@ const userTableService = createApi({
       return headers;
     },
   }),
+  tagTypes: ['User'],
   endpoints: (builder) => ({
     getUsers: builder.query<GetUsersResponse, GetUsersRequest>({
       query: ({ limit, page }) => ({
@@ -35,6 +36,16 @@ const userTableService = createApi({
           offset: getOffset(limit, page),
         },
       }),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.data.users.map(({ id }) => ({
+                type: 'User' as const,
+                id,
+              })),
+              'User',
+            ]
+          : ['User'],
     }),
     updateUser: builder.mutation<UpdateUserResponse, User>({
       query: ({ id, ...data }) => ({
@@ -44,6 +55,7 @@ const userTableService = createApi({
           id,
           ...data,
         },
+        invalidatesTags: ['User'],
       }),
     }),
     deleteUser: builder.mutation<DeleteUserResponse, string>({
@@ -51,6 +63,7 @@ const userTableService = createApi({
         url: `${ENDPOINTS.ADMIN}/${id}`,
         method: HTTPMethod.DELETE,
       }),
+      invalidatesTags: ['User'],
     }),
   }),
 });

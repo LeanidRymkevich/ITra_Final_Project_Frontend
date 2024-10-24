@@ -82,8 +82,10 @@ interface UsersTableState {
   orderBy: keyof User;
   selected: User['id'][];
   users: User[];
-  error: string;
-  code: number;
+  error: {
+    msg: string;
+    code: number;
+  };
 }
 
 interface GetUsersRequest {
