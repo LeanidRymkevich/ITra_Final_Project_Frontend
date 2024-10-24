@@ -3,8 +3,8 @@ import {
   DeleteUserResponse,
   GetUsersRequest,
   GetUsersResponse,
+  UpdateUserRequest,
   UpdateUserResponse,
-  User,
 } from '../types/interfaces';
 import { SERVER_URL } from '../constants/constants';
 import { ENDPOINTS, SERVICES_NAMES } from '../types/enums';
@@ -25,7 +25,6 @@ const userTableService = createApi({
       return headers;
     },
   }),
-  tagTypes: ['User'],
   endpoints: (builder) => ({
     getUsers: builder.query<GetUsersResponse, GetUsersRequest>({
       query: ({ limit, page, order, orderBy }) => ({
@@ -38,18 +37,8 @@ const userTableService = createApi({
           orderBy,
         },
       }),
-      providesTags: (result) =>
-        result
-          ? [
-              ...result.data.users.map(({ id }) => ({
-                type: 'User' as const,
-                id,
-              })),
-              'User',
-            ]
-          : ['User'],
     }),
-    updateUser: builder.mutation<UpdateUserResponse, User>({
+    updateUser: builder.mutation<UpdateUserResponse, UpdateUserRequest>({
       query: ({ id, ...data }) => ({
         url: `${ENDPOINTS.ADMIN}/${id}`,
         method: HTTPMethod.PATCH,
@@ -57,15 +46,13 @@ const userTableService = createApi({
           id,
           ...data,
         },
-        invalidatesTags: ['User'],
       }),
     }),
-    deleteUser: builder.mutation<DeleteUserResponse, string>({
+    deleteUser: builder.mutation<DeleteUserResponse, number>({
       query: (id) => ({
         url: `${ENDPOINTS.ADMIN}/${id}`,
         method: HTTPMethod.DELETE,
       }),
-      invalidatesTags: ['User'],
     }),
   }),
 });

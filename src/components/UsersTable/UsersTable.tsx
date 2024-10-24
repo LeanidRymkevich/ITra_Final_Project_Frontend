@@ -44,7 +44,7 @@ const UsersTable: FC = () => {
   const selected = useSelector(selectSelectedUserIds);
   const page = useSelector(selectPage);
   const limit = useSelector(selectLimit);
-
+  console.log(rows);
   const { data, isLoading, error } = useGetUsersQuery({
     page,
     limit,

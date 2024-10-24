@@ -102,6 +102,10 @@ interface GetUsersResponse {
   };
 }
 
+interface UpdateUserRequest extends Partial<Omit<User, 'id'>> {
+  id: User['id'];
+}
+
 interface UpdateUserResponse {
   data: User;
 }
@@ -128,4 +132,5 @@ export type {
   GetUsersResponse,
   UpdateUserResponse,
   DeleteUserResponse,
+  UpdateUserRequest,
 };

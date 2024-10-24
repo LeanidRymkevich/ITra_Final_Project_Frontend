@@ -51,6 +51,23 @@ const UsersTableSlice = createSlice({
     setUsers(state, { payload }: PayloadAction<User[]>) {
       state.users = payload;
     },
+    updateOneUser(
+      state,
+      {
+        payload,
+      }: PayloadAction<{ id: number; data: Partial<Omit<User, 'id'>> }>
+    ) {
+      const { id, data } = payload;
+      const user = state.users.find((user) => user.id === id);
+      if (!user) return;
+      state.users = [
+        ...state.users.filter((user) => user.id !== id),
+        { ...user, ...data },
+      ];
+    },
+    deleteOneUser(state, { payload }: PayloadAction<number>) {
+      state.users = state.users.filter((user) => user.id !== payload);
+    },
     setError(
       state,
       {
@@ -79,6 +96,8 @@ export const {
   setUsers,
   setError,
   resetError,
+  updateOneUser,
+  deleteOneUser,
 } = UsersTableSlice.actions;
 
 export const selectError = (
