@@ -44,8 +44,8 @@ const UsersTable: FC = () => {
   const selected = useSelector(selectSelectedUserIds);
   const page = useSelector(selectPage);
   const limit = useSelector(selectLimit);
-  console.log(rows);
-  const { data, isLoading, error } = useGetUsersQuery({
+
+  const { data, isFetching, error } = useGetUsersQuery({
     page,
     limit,
     order,
@@ -53,17 +53,17 @@ const UsersTable: FC = () => {
   });
 
   useEffect(() => {
-    dispatch(setIsLoading(isLoading));
+    dispatch(setIsLoading(isFetching));
     if (data) {
       dispatch(setUsers(data.data.users));
       dispatch(setTotal(data.data.total));
     }
-
+    console.log(isFetching);
     if (error) {
       const { data, status } = error as ServerResponseError;
       dispatch(setError({ msg: data.error, code: status }));
     }
-  }, [data, dispatch, isLoading, error]);
+  }, [data, dispatch, isFetching, error]);
 
   const handleClick = (_event: React.MouseEvent<unknown>, id: number) => {
     const selectedIndex = selected.indexOf(id);

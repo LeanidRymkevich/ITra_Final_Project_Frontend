@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Alert, Stack } from '@mui/material';
+import { Alert, Backdrop, CircularProgress, Stack } from '@mui/material';
 import Container from '@mui/material/Container';
 
 import PageTitle from '../components/PageTitle';
@@ -10,6 +10,7 @@ import { useAppDispatch } from '../hooks/reduxHooks';
 import {
   selectError,
   resetError,
+  selectIsLoading,
 } from '../redux/UsersTableSlice/UsersTableSlice';
 import UsersTable from '../components/UsersTable/UsersTable';
 
@@ -18,6 +19,7 @@ const AdminPage: FC = () => {
 
   const dispatch = useAppDispatch();
   const error = useSelector(selectError).msg;
+  const isLoading = useSelector(selectIsLoading);
 
   const onErrorClose = (): void => {
     dispatch(resetError());
@@ -44,6 +46,14 @@ const AdminPage: FC = () => {
           </Alert>
         )}
         <UsersTable />
+        {isLoading && (
+          <Backdrop
+            sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
+            open={true}
+          >
+            <CircularProgress color="inherit" />
+          </Backdrop>
+        )}
       </Stack>
     </Container>
   );

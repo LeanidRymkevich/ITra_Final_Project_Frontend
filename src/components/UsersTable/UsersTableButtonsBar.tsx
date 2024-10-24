@@ -44,7 +44,6 @@ const UsersTableButtonsBar: FC = () => {
         } catch (err) {
           const { data, status } = err as ServerResponseError;
           dispatch(setError({ msg: data.error, code: status }));
-          console.log(err);
         }
       })
     );
@@ -61,7 +60,6 @@ const UsersTableButtonsBar: FC = () => {
         } catch (err) {
           const { data, status } = err as ServerResponseError;
           dispatch(setError({ msg: data.error, code: status }));
-          console.log(err);
         }
       })
     );
